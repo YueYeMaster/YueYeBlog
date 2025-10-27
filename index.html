@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YueYeBlog</title>
+    <!-- 引入CSS文件 -->
+    <link rel="stylesheet" href="css-compiled/layout.css">
+    <link rel="stylesheet" href="css-compiled/public.css">
+    <link rel="stylesheet" href="css-compiled/var.css">
+    <link rel="stylesheet" href="css-compiled/mobile.css">
+    <link rel="stylesheet" href="css/markdown-theme.css">
+    <link rel="stylesheet" href="css/highlight.css">
+    <link rel="stylesheet" href="css/APlayer.min.css">
+    <!-- 引入IconFont -->
+    <link rel="stylesheet" href="css-compiled/iconfont.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部区域 -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="site-title">YueYeBlog</h1>
+                <p class="site-description">个人博客网站</p>
+            </div>
+        </header>
+
+        <!-- 导航菜单 -->
+        <nav class="navigation">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#" class="nav-link">首页</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">文章</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">分类</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">标签</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">关于</a></li>
+            </ul>
+        </nav>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+            <article class="post">
+                <h2 class="post-title">欢迎来到 YueYeBlog</h2>
+                <div class="post-meta">
+                    <span class="post-date">2023-01-01</span>
+                </div>
+                <div class="post-content">
+                    <p>这是一个简单的博客网站示例。您可以通过浏览器直接打开此HTML文件来查看效果。</p>
+                    <p>项目使用了Stylus CSS预处理器，包含了基本的布局和样式。</p>
+                </div>
+            </article>
+        </main>
+
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="section-title">关于博主</h3>
+                <div class="author-info">
+                    <img src="imgs/avatar-bg.jpeg" alt="博主头像" class="author-avatar">
+                    <p class="author-bio">热爱技术，分享生活</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p class="footer-text">© 2023 YueYeBlog. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- 引入JavaScript文件 -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.pjax.min.js"></script>
+    <script src="js/highlight/highlight.min.js"></script>
+    <script src="js/APlayer.min.js"></script>
+    <script src="js/prism.js"></script>
+    
+    <script>
+        // 初始化代码高亮
+        document.addEventListener('DOMContentLoaded', function() {
+            hljs.initHighlightingOnLoad();
+        });
+    </script>
+</body>
+</html>
