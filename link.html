@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>友情链接 | YueYeBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon"type="image/png"href="./imgs/头像48px.png">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/iconfont.css">
+  <style>
+    body{
+      background-image: url("./imgs/主页壁纸3.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+    .article {
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #333;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .article-title {
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: #333;
+      font-weight: bold;
+    }
+    
+    .article-title a {
+      color: #333;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .article-title a:hover {
+      color: #42b983;
+    }
+    
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 15px;
+      color: #999;
+      font-size: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed #eaeaea;
+    }
+    
+    .article-meta-item {
+      display: flex;
+      align-items: center;
+    }
+    
+    .article-meta-item i {
+      margin-right: 5px;
+      color: #42b983;
+    }
+    
+    .article-excerpt {
+      line-height: 1.8;
+      color: #666;
+      margin-bottom: 15px;
+      text-indent: 2em;
+    }
+    
+    .article-excerpt p {
+      margin-bottom: 10px;
+    }
+    
+    .article-excerpt p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .article-readmore {
+      text-align: right;
+      margin-top: 15px;
+    }
+    
+    .article-readmore a {
+      display: inline-block;
+      padding: 8px 20px;
+      background-color: #42b983;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.3s;
+      font-size: 14px;
+    }
+    
+    .article-readmore a:hover {
+      background-color: #3aa876;
+      transform: translateY(-2px);
+    }
+    
+    .article-tags {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px dashed #eaeaea;
+    }
+    
+    .article-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      background-color: #f0f0f0;
+      color: #666;
+      text-decoration: none;
+      border-radius: 15px;
+      margin-right: 10px;
+      margin-bottom: 5px;
+      font-size: 12px;
+      transition: all 0.3s;
+    }
+    
+    .article-tag:hover {
+      background-color: #42b983;
+      color: #fff;
+    }
+    
+    .article-cover {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+    
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #333;
+    }
+    
+    .pagination-item {
+      padding: 8px 16px;
+      margin: 0 5px;
+      background-color: #f0f0f0;
+      color: #666;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.3s;
+      font-size: 14px;
+    }
+    
+    .pagination-item:hover {
+      background-color: #42b983;
+      color: #fff;
+    }
+    
+    .pagination-item.active {
+      background-color: #42b983;
+      color: #fff;
+    }
+    
+    .pagination-item.disabled {
+      background-color: #f0f0f0;
+      color: #ccc;
+      cursor: not-allowed;
+    }
+    
+    .pagination-item.disabled:hover {
+      background-color: #f0f0f0;
+      color: #ccc;
+      transform: none;
+    }
+    
+    .article-special {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .article-special::before {
+      content: "置顶";
+      position: absolute;
+      top: 20px;
+      left: 0;
+      background-color: #42b983;
+      color: #fff;
+      padding: 5px 10px;
+      font-size: 12px;
+      border-radius: 0 4px 4px 0;
+    }
+    
+    @media screen and (max-width: 768px) {
+      .article {
+        padding: 15px;
+      }
+      
+      .article-title {
+        font-size: 20px;
+      }
+      
+      .article-meta {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .article-cover {
+        height: 150px;
+      }
+      
+      .pagination {
+        flex-wrap: wrap;
+      }
+      
+      .pagination-item {
+        margin: 5px;
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 全局音乐进度加载条 -->
+  <div id="global-progress"></div>
+  <div class="container w-100 vh-100">
+    <header class="header">
+      <div class="header-wrapper">
+        <div class="header-left">
+          <!-- 搜索功能已移除 -->
+        </div>
+        <div class="header-right">
+          <ul class="header-menu">
+            <li>
+              <a href="index.html">
+                <i class="header-menu--icon iconfont icon-shouye"></i>
+                <span class="header-menu--span">首页</span>
+              </a>
+            </li>
+            <li>
+              <a href="log.html">
+                <i class="header-menu--icon iconfont icon-rizhi"></i>
+                <span class="header-menu--span">日志</span>
+              </a>
+            </li>
+            <li>
+              <a href="link.html">
+                <i class="header-menu--icon iconfont icon-youqinglianjie"></i>
+                <span class="header-menu--span">友情链接</span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html">
+                <i class="header-menu--icon iconfont icon-guanyuwomen"></i>
+                <span class="header-menu--span">关于我</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <section id="main" class="main">
+      <div class="main-left-wrapper">
+        <div class="main-left">
+          <div class="main-left--block">
+            <div class="main-left--info">
+              <img src="./imgs/头像.png" class="main-left--avatar" />
+              <div class="main-left--intro">
+                <p class="main-left--name">YueYe</p>
+                <div class="main-left--tags">
+                  <span class="main-left--tag">懒</span>
+                  <span class="main-left--tag">宅</span>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="main-left--motto">
+                <p>此情可待成追忆</p>
+                <p>只是当时是已惘然</p>
+              </div>
+              <div class="main-left--github">
+                <span class="line"></span>
+                <a href="https://github.com/YueYeMaster"><i class="logo iconfont icon-github-fill"></i></a>
+                <span class="line"></span>
+              </div>
+              <div class="main-left--statics">
+                <a href="categories.html">
+                  <div>
+                    <span>0</span>
+                    <span>分类</span>
+                  </div>
+                </a>
+                <a href="tags.html">
+                  <div>
+                    <span>0</span>
+                    <span>标签</span>
+                  </div>
+                </a>
+
+              </div>
+            </div>
+          </div>
+          
+          <div class="main-left--block">
+            <ul class="main-left--menu">
+              <li>
+                <a href="index.html">
+                  <span class="header-menu--span">首页</span>
+                  <i class="header-menu--icon iconfont icon-shouye"></i>
+                </a>
+              </li>
+              <li>
+                <a href="categories.html">
+                  <span class="header-menu--span">分类</span>
+                  <i class="header-menu--icon iconfont icon-fenlei"></i>
+                </a>
+              </li>
+              <li>
+                <a href="tags.html">
+                  <span class="header-menu--span">标签</span>
+                  <i class="header-menu--icon iconfont icon-biaoqian"></i>
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div id="main-container" class="main-container">
+          <div class="article">
+            <h2 class="article-title">最新文章</h2>
+            <p style="text-align: center; color: #999; padding: 60px 0;">暂无文章</p>
+          </div>
+        </div>
+      
+      <div class="main-right-wrapper">
+        <!-- 音乐盒子 -->
+        <div id="main-right-wrapper-music">
+          <!-- 音频播放器 -->
+          <audio id="myAudio">
+            <source src="" type="audio/mpeg">
+          </audio>
+          
+          <!-- 音乐信息显示区域 -->
+          <div class="music-info">
+            <div class="music-title" id="musicTitle">暂无播放</div>
+            <div class="music-artist" id="musicArtist">点击播放按钮开始</div>
+          </div>
+          
+          <!-- 播放器控制区域 -->
+          <div class="player">
+            <div class="control" id="control">
+              <!-- 音乐专辑图片 -->
+              <div class="alarm">
+              </div>
+              
+              <!-- 播放控制按钮 -->
+              <div class="buts">
+                <div class="prev" id="prevBtn" title="上一首">
+                  <i class="iconfont icon-prev"></i>
+                </div>
+                <div class="play" id="playBtn" title="播放/暂停">
+                  <i class="iconfont icon-play"></i>
+                </div>
+                <div class="next" id="nextBtn" title="下一首">
+                  <i class="iconfont icon-next"></i>
+                </div>
+              </div>
+            </div>
+            
+            <!-- 进度条和音量控制 -->
+            <div class="progress-container">
+              <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+              </div>
+              <div class="time-info">
+                <span id="currentTime">00:00</span>
+                <span id="totalTime">00:00</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 音乐列表 -->
+          <div class="music-list">
+            <div class="music-list-title">音乐列表</div>
+            <div class="music-items" id="musicItems">
+              <!-- 音乐列表将由JavaScript动态生成 -->
+            </div>
+          </div>
+          
+          <script>
+            // 音乐数据列表
+            const musicList = [
+              {
+                id: 1,
+                title: "冬眠2023",
+                artist: "阿yueyue",
+                src: "./music/冬眠2023.MP3",
+                cover: "../imgs/头像48px.png"
+              },
+              {
+                id: 2,
+                title: "天若有情",
+                artist: "网络歌手",
+                src: "./music/天若有情.MP3",
+                cover: "../imgs/头像48px.png"
+              },
+              {
+                id: 3,
+                title: "罗生门",
+                artist: "张子豪",
+                src: "./music/罗生门.MP3",
+                cover: "../imgs/头像48px.png"
+              },
+              {
+                id: 4,
+                title: "我走后",
+                artist: "网络歌手",
+                src: "./music/我走后.MP3",
+                cover: "../imgs/头像48px.png"
+              }
+            ];
+            
+            // 获取DOM元素
+            const audio = document.getElementById('myAudio');
+            const playBtn = document.getElementById('playBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const progress = document.getElementById('progress');
+            const progressBar = document.querySelector('.progress-bar');
+            const currentTimeEl = document.getElementById('currentTime');
+            const totalTimeEl = document.getElementById('totalTime');
+            const musicTitleEl = document.getElementById('musicTitle');
+            const musicArtistEl = document.getElementById('musicArtist');
+            const musicItemsEl = document.getElementById('musicItems');
+            const alarmEl = document.querySelector('.alarm');
+            
+            // 当前播放索引
+            let currentMusicIndex = 0;
+            // 是否正在播放
+            let isPlaying = false;
+            
+            // 初始化音乐列表
+            function initMusicList() {
+              musicItemsEl.innerHTML = '';
+              musicList.forEach((music, index) => {
+                const musicItem = document.createElement('div');
+                musicItem.classList.add('music-item');
+                if (index === currentMusicIndex) {
+                  musicItem.classList.add('active');
+                }
+                musicItem.innerHTML = `
+                  <div class="music-item-index">${index + 1}</div>
+                  <div class="music-item-info">
+                    <div class="music-item-title">${music.title}</div>
+                    <div class="music-item-artist">${music.artist}</div>
+                  </div>
+                `;
+                musicItem.addEventListener('click', () => {
+                  currentMusicIndex = index;
+                  loadMusic();
+                  playMusic();
+                });
+                musicItemsEl.appendChild(musicItem);
+              });
+            }
+            
+            // 加载音乐
+            function loadMusic() {
+              const music = musicList[currentMusicIndex];
+              const globalProgress = document.getElementById('global-progress');
+              audio.src = music.src;
+              musicTitleEl.textContent = music.title;
+              musicArtistEl.textContent = music.artist;
+              
+              // 重置播放状态和旋转动画
+              isPlaying = false;
+              playBtn.innerHTML = '<i class="iconfont icon-play"></i>';
+              alarmEl.style.animation = 'none';
+              alarmEl.classList.remove('rotating');
+              // 重置全局进度条
+              globalProgress.style.width = '0%';
+              
+              // 更新当前播放高亮
+              document.querySelectorAll('.music-item').forEach((item, index) => {
+                if (index === currentMusicIndex) {
+                  item.classList.add('active');
+                } else {
+                  item.classList.remove('active');
+                }
+              });
+              
+              // 更新专辑封面
+              if (alarmEl && alarmEl.querySelector('::before')) {
+                // 可以通过修改CSS变量来更新封面
+              }
+            }
+            
+            // 播放音乐
+            function playMusic() {
+              audio.play().then(() => {
+                isPlaying = true;
+                playBtn.innerHTML = '<i class="iconfont icon-pause"></i>';
+                // 添加旋转动画
+                alarmEl.style.animation = 'rotate 20s linear infinite';
+                alarmEl.classList.add('rotating'); // 添加旋转类
+              }).catch(error => {
+                console.error('播放失败:', error);
+                alert('音乐播放失败，请检查音乐文件路径');
+              });
+            }
+            
+            // 暂停音乐
+            function pauseMusic() {
+              audio.pause();
+              isPlaying = false;
+              playBtn.innerHTML = '<i class="iconfont icon-play"></i>';
+              // 停止旋转动画
+              alarmEl.style.animation = 'none';
+              alarmEl.classList.remove('rotating'); // 移除旋转类
+            }
+            
+            // 播放下一首
+            function nextMusic() {
+              currentMusicIndex = (currentMusicIndex + 1) % musicList.length;
+              loadMusic();
+              if (isPlaying) {
+                playMusic();
+              }
+            }
+            
+            // 播放上一首
+            function prevMusic() {
+              currentMusicIndex = (currentMusicIndex - 1 + musicList.length) % musicList.length;
+              loadMusic();
+              if (isPlaying) {
+                playMusic();
+              }
+            }
+            
+            // 更新进度条
+            function updateProgress(e) {
+              const { duration, currentTime } = e.srcElement;
+              const progressPercent = (currentTime / duration) * 100;
+              progress.style.width = `${progressPercent}%`;
+              
+              // 更新全局进度条
+              const globalProgress = document.getElementById('global-progress');
+              globalProgress.style.width = `${progressPercent}%`;
+              
+              // 更新时间显示
+              currentTimeEl.textContent = formatTime(currentTime);
+              if (duration) {
+                totalTimeEl.textContent = formatTime(duration);
+              }
+            }
+            
+            // 跳转到指定进度
+            function setProgress(e) {
+              const width = this.clientWidth;
+              const clickX = e.offsetX;
+              const duration = audio.duration;
+              audio.currentTime = (clickX / width) * duration;
+            }
+            
+            // 格式化时间
+            function formatTime(seconds) {
+              const minutes = Math.floor(seconds / 60);
+              const secs = Math.floor(seconds % 60);
+              return `${minutes < 10 ? '0' : ''}${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+            
+            // 事件监听器
+            playBtn.addEventListener('click', () => {
+              if (isPlaying) {
+                pauseMusic();
+              } else {
+                playMusic();
+              }
+            });
+            
+            prevBtn.addEventListener('click', prevMusic);
+            nextBtn.addEventListener('click', nextMusic);
+            
+            // 进度更新
+            audio.addEventListener('timeupdate', updateProgress);
+            
+            // 点击进度条跳转
+            progressBar.addEventListener('click', setProgress);
+            
+            // 音乐播放结束自动播放下一首
+            audio.addEventListener('ended', nextMusic);
+            
+            // 初始化
+            function init() {
+              // 添加图标样式（简单的播放控制图标）
+              const style = document.createElement('style');
+              style.textContent = `
+                /* 播放控制图标样式 */
+                .icon-play::before { content: '▶'; }
+                .icon-pause::before { content: '⏸'; }
+                .icon-prev::before { content: '⏮'; }
+                .icon-next::before { content: '⏭'; }
+                
+                /* 音乐信息样式 */
+                .music-info {
+                  text-align: center;
+                  margin-bottom: 10px;
+                  padding: 10px;
+                  background: rgba(255, 255, 255, 0.9);
+                  border-radius: 10px;
+                }
+                .music-title {
+                  font-weight: bold;
+                  color: #333;
+                  margin-bottom: 5px;
+                }
+                .music-artist {
+                  font-size: 12px;
+                  color: #666;
+                }
+                
+                /* 进度条样式 - 修改为放在播放按钮下方 */
+                .player {
+                  position: relative;
+                  margin-bottom: 15px;
+                }
+                .progress-container {
+                  margin: 10px 0;
+                  position: static;
+                }
+                .progress-bar {
+                  width: 100%;
+                  height: 4px;
+                  background: #ddd;
+                  border-radius: 2px;
+                  cursor: pointer;
+                  margin-bottom: 5px;
+                }
+                .progress {
+                  height: 100%;
+                  background: #42b983;
+                  border-radius: 2px;
+                  width: 0%;
+                  position: relative;
+                  z-index: 1;
+                }
+                .time-info {
+                  display: flex;
+                  justify-content: space-between;
+                  font-size: 10px;
+                  color: #999;
+                }
+                
+                /* 解决绿条遮挡问题 - 确保进度条不会溢出容器 */
+                #main-right-wrapper-music {
+                  position: relative;
+                  z-index: 10;
+                }
+                
+                /* 确保进度条不会覆盖页面 */
+                .progress-container {
+                  overflow: hidden;
+                }
+                
+                /* 右侧盒子对齐样式 */
+                .main-right-wrapper {
+                  width: var(--mainRightWidth);
+                  margin-left: auto;
+                }
+                .main-right-wrapper-music {
+                  width: 100%;
+                }
+                
+                /* 音乐列表样式 */
+                .music-list {
+                  background: rgba(255, 255, 255, 0.9);
+                  border-radius: 10px;
+                  padding: 10px;
+                  max-height: 200px;
+                  overflow-y: auto;
+                  margin-bottom: 15px;
+                }
+                .music-list-title {
+                  font-weight: bold;
+                  margin-bottom: 10px;
+                  color: #333;
+                }
+                .music-item {
+                  display: flex;
+                  align-items: center;
+                  padding: 8px 0;
+                  border-bottom: 1px solid #eee;
+                  cursor: pointer;
+                  transition: background 0.2s;
+                }
+                .music-item:hover {
+                  background: #f5f5f5;
+                }
+                .music-item.active {
+                  color: #42b983;
+                }
+                .music-item-index {
+                  width: 20px;
+                  font-size: 12px;
+                  margin-right: 10px;
+                }
+                .music-item-info {
+                  flex: 1;
+                }
+                .music-item-title {
+                  font-size: 14px;
+                }
+                .music-item-artist {
+                  font-size: 12px;
+                  color: #999;
+                }
+                
+                /* 旋转动画 */
+                @keyframes rotate {
+                  from { transform: rotate(0deg); }
+                  to { transform: rotate(360deg); }
+                }
+                
+                /* 按钮样式增强 */
+                .buts {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 15px;
+                }
+                .prev, .play, .next {
+                  cursor: pointer;
+                  font-size: 20px;
+                  color: #333;
+                  transition: color 0.3s;
+                }
+                .prev:hover, .play:hover, .next:hover {
+                  color: #42b983;
+                }
+                .play {
+                  font-size: 24px;
+                }
+              `;
+              document.head.appendChild(style);
+              
+              // 初始化音乐列表
+              initMusicList();
+              
+              // 页面加载后自动播放音乐
+              setTimeout(() => {
+                  audio.play().then(() => {
+                      isPlaying = true;
+                      playBtn.innerHTML = '<i class="iconfont icon-pause"></i>';
+                      const alarm = document.querySelector('.alarm');
+                      alarm.style.animation = 'rotate 20s linear infinite';
+                      alarm.classList.add('rotating'); // 添加旋转动画
+                  }).catch(error => {
+                      console.log('自动播放失败，可能受到浏览器限制:', error);
+                  });
+              }, 500);
+            }
+            
+            // 页面加载完成后初始化
+            window.addEventListener('load', init);
+          </script>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
