@@ -1,0 +1,759 @@
+/* 变量定义 */
+:root {
+  --mainWidth: 1200px;          /* 主内容区域宽度 */
+  --headerHeight: 100px;        /* 头部高度 */
+  --footerHeight: 0px;          /* 底部高度 */
+  --mainLeftWidth: 200px;       /* 左侧栏宽度 */
+  --mainRightWidth: 250px;      /* 右侧栏宽度 */
+  --primaryColor: #333;         /* 主文字颜色 */
+  --secondaryColor: #666;       /* 次要文字颜色 */
+  --bgColor: #f5f5f5;           /* 背景颜色 */
+  --borderColor: #eaeaea;       /* 边框颜色 */
+}
+
+/* 全局样式重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 基础样式 */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--primaryColor);
+  background-color: var(--bgColor);
+  line-height: 1.6;
+}
+
+/* 链接样式 */
+a {
+  color: var(--primaryColor);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #42b983; /* 链接悬停颜色 */
+}
+
+/* 列表样式重置 */
+ul {
+  list-style: none;
+}
+
+/* 容器样式 - 固定背景图 */
+.container {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: url('../imgs/bg-cover.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  padding-top: var(--headerHeight);
+}
+
+/* 确保内容区域在背景之上 */
+.container .main-left,
+.container .main-container,
+.container .main-right {
+  z-index: 3;
+}
+
+/* 头部样式 */
+.header {
+  width: 100%;
+  height: var(--headerHeight);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 20px;
+  box-shadow: 0 0 5px var(--primaryColor);
+  backdrop-filter: blur(2px);
+  background-image: url(../imgs/topimg2.jpg);
+  background-size: cover;
+}
+
+/* 头部背景遮罩 */
+.header::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  left: 0;
+  top: 0;
+  background: url('./imgs/topimg.jpg') no-repeat;
+  background-size: cover;
+}
+
+/* 头部容器 */
+.header-wrapper {
+  width: var(--mainWidth);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+/* 头部左侧区域 */
+.header-left {
+  position: relative;
+}
+
+/* 导航菜单样式 */
+.header-right ul.header-menu {
+  display: flex;
+}
+
+/* 活动导航项样式 */
+.header-menu a.active,
+nav a.active {
+  color: #42b983;
+  font-weight: bold;
+  position: relative;
+}
+
+.header-menu a.active::after,
+nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #42b983;
+  border-radius: 1px;
+}
+
+.header-menu li {
+  margin-left: 30px;
+}
+
+.header-menu a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--primaryColor);
+}
+
+/* 导航图标样式 */
+.header-menu--icon {
+  font-size: 24px;
+  margin-bottom: 5px;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  line-height: 24px;
+}
+
+/* 为导航菜单项添加图标 */
+.header-menu li:nth-child(1) .header-menu--icon::before {
+  content: "🏠"; /* 首页图标 */
+}
+
+.header-menu li:nth-child(2) .header-menu--icon::before {
+  content: "📂"; /* 日志图标 */
+}
+
+.header-menu li:nth-child(3) .header-menu--icon::before {
+  content: "👤"; /* 关于我图标 */
+}
+
+/* 导航文字样式 */
+.header-menu--span {
+  font-size: 12px;
+}
+
+/* 主内容区域 */
+.main {
+  width: var(--mainWidth);
+  margin: 0 auto;
+  padding-top: 15px;
+  display: flex;
+  /* 确保flex布局不会影响固定定位的元素 */
+  position: relative;
+}
+
+/* 中间内容区域 */
+.main-container {
+  width: calc(var(--mainWidth) - var(--mainLeftWidth) - var(--mainRightWidth));
+  padding: 0 15px;
+  align-self: flex-start;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+}
+
+/* 左侧栏样式 */
+.main-left {
+  width: var(--mainLeftWidth);
+  position: fixed;
+}
+
+.main-left-wrapper {
+  width: var(--mainLeftWidth);
+}
+
+/* 左侧栏目的主体 */
+.main-left--block {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px var(--primaryColor);
+  overflow: hidden;
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* 第一个区块不需要顶部margin */
+.main-left--block:first-child {
+  margin-top: 0;
+}
+
+/* 用户信息区域 */
+.main-left--info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 用户头像 */
+.main-left--avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 10s linear;
+}
+
+/* 用户介绍区域 */
+.main-left--intro {
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* 用户名 */
+.main-left--name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* 用户标签容器 */
+.main-left--tags {
+  display: flex;
+  gap: 10px;
+}
+
+/* 用户标签样式 */
+.main-left--tag {
+  font-size: 12px;
+  padding: 2px 8px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+/* 个性签名 */
+.main-left--motto {
+  text-align: center;
+  margin: 15px 0;
+  font-size: 14px;
+  color: var(--secondaryColor);
+  line-height: 1.8;
+}
+
+/* GitHub链接区域 */
+.main-left--github {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+/* GitHub链接分隔线 */
+.main-left--github .line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--borderColor);
+}
+
+/* GitHub图标 */
+.main-left--github .logo {
+  font-size: 24px;
+  margin: 0 15px;
+}
+
+/* 主页按钮样式 */
+.main-left--statics button {
+  width: 100%;
+  padding: 10px 15px 10px 35px;
+  background-color: #42b983;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* 为首页按钮添加图片UI */
+.main-left--statics button::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-image: url('../imgs/home.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: invert(1); /* 让图标显示为白色 */
+}
+
+.main-left--statics button:hover {
+  background-color: #3aa876;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(66, 185, 131, 0.3);
+}
+
+.main-left--statics button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(66, 185, 131, 0.3);
+}
+
+/* GitHub链接样式优化 */
+.main-left--github a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.main-left--github a:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.main-left--github a .logo {
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.main-left--github a:hover .logo {
+  transform: scale(1.1);
+}
+
+/* 统计数据区域 */
+.main-left--statics {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--borderColor);
+}
+
+/* 左侧菜单 */
+.main-left--menu {
+  padding: 0;
+}
+
+.main-left--menu li {
+  margin-bottom: 10px;
+}
+
+.main-left--menu a {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+/* 调整链接内容的布局 */
+.main-left--menu a span {
+  margin-right: 8px;
+}
+
+/* 为GitHub链接添加UI图片样式 */
+.main-left--github a {
+  position: relative;
+  padding-left: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+}
+
+.main-left--github a::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  width: 22px;
+  height: 22px;
+  background-image: url('../imgs/github.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.9;
+  filter: invert(1); /* 让GitHub图标显示为白色 */
+}
+
+.main-left--github i.logo {
+  display: none;
+}
+
+/* 为知识分享菜单添加UI图片样式 */
+.main-left--menu li:first-child a {
+  position: relative;
+  padding-left: 30px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin-left: 10px; /* 调整水平位置与首页对齐 */
+}
+
+.main-left--menu li:first-child a i {
+  display: none;
+}
+
+.main-left--menu li:first-child a::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  width: 24px;
+  height: 24px;
+  background-image: url('../imgs/share.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: invert(1); /* 让图标显示为白色 */
+}
+
+/* 为赛博日记菜单添加UI图片样式 */
+.main-left--menu li:nth-child(2) a {
+  position: relative;
+  padding-left: 30px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin-left: 10px; /* 调整水平位置与首页对齐 */
+}
+
+.main-left--menu li:nth-child(2) a i {
+  display: none;
+}
+
+.main-left--menu li:nth-child(2) a::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  width: 24px;
+  height: 24px;
+  background-image: url('../imgs/journal.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: invert(1); /* 让图标显示为白色 */
+}
+
+/* 右侧栏样式 - 固定定位 */
+.main-right {
+  /* 强制固定定位 */
+  position: fixed !important;
+  right: calc((100vw - var(--mainWidth)) / 2) !important;
+  top: calc(var(--headerHeight) + 20px) !important;
+  width: var(--mainRightWidth) !important;
+  height: calc(100vh - var(--headerHeight) - 40px) !important;
+  z-index: 9999 !important;
+  /* 重置所有可能干扰的属性 */
+  margin: 0 !important;
+  padding: 0 !important;
+  float: none !important;
+  transform: none !important;
+  overflow: visible !important;
+  box-sizing: border-box !important;
+  display: block !important;
+  background: transparent !important;
+}
+
+/* 右侧栏内容 */
+.main-right-wrapper {
+  /* 确保包装器完全填充右侧栏 */
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+}
+
+/* 为右侧栏中的所有内容块添加样式 */
+#main-right-wrapper-music {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  background-color: #fff !important;
+  border-radius: 10px !important;
+  box-shadow: 0 0 5px var(--primaryColor) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  padding: 15px !important;
+  margin-bottom: 20px !important;
+  position: relative !important;
+}
+
+/* 隐藏音频元素 */
+#myAudio {
+  display: none;
+}
+
+/* 音乐播放器容器 */
+.player {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+/* 播放器控制面板 */
+.control {
+  width: 100%;
+  height: 80px;
+  background-color: #fff;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: 0 20px 20px 5px rgba(132,132,132,0.4);
+}
+
+/* 音乐专辑图片 - 圆形并添加旋转效果 */
+.alarm {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: absolute;
+  top: -15px;
+  left: 15px;
+  border-color: #000;
+  transform: scale(1);
+  transition: all 0.5s ease;
+}
+
+/* 专辑图片背景 */
+.alarm::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: url('../imgs/头像48px.png') no-repeat center center;
+  background-size: 100% ;
+}
+
+/* 音乐播放时头像旋转动画 */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 播放时应用旋转动画 */
+.alarm.rotating::before {
+  animation: rotate 10s linear infinite;
+}
+
+/* 右侧盒子对齐样式 */
+.main-right-wrapper {
+  width: var(--mainRightWidth);
+  margin-left: auto;
+  background: transparent; /* 右侧大块本体透明 */
+  /* 确保在固定容器内正确显示 */
+  position: relative;
+  width: 100%;
+}
+
+/* 为右侧大栏中的所有小栏添加磨砂效果 */
+.main-right-wrapper > div {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 5px var(--primaryColor);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+/* 音乐播放列表磨砂效果 */
+.music-list {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* 全局音乐进度加载条 */
+#global-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #42b983;
+  z-index: 999999;
+  transition: width 0.1s linear;
+}
+
+/* 响应式设计 */
+@media screen and (max-width: 1200px) {
+  :root {
+    --mainWidth: 900px;
+  }
+  
+  .container {
+    background-size: cover;
+  }
+  
+  .main-right {
+    right: calc((100vw - var(--mainWidth)) / 2);
+  }
+}
+
+@media screen and (max-width: 992px) {
+  :root {
+    --mainWidth: 700px;
+    --mainRightWidth: 200px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --headerHeight: 80px;
+  }
+  
+  .container {
+    padding: 0;
+  }
+  
+  .header {
+    padding-top: 30px !important;
+    height: var(--headerHeight);
+  }
+  
+  .header-wrapper {
+    width: 100%;
+  }
+  
+  .header-left {
+    width: 100%;
+  }
+  
+  .header-right {
+    display: none;
+  }
+  
+  /* 移动端布局调整 - 垂直排列 */
+  .main {
+    width: 100% !important;
+    padding: 0 15px;
+    flex-direction: column;
+  }
+  
+  .main-left {
+    order: 1;
+    width: 100% !important;
+    position: relative !important;
+  }
+  
+  .main-left-wrapper {
+    width: 100% !important;
+  }
+  
+  .main-right {
+    order: 2;
+    width: 100% !important;
+    position: relative !important;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    right: 0 !important;
+  }
+  
+  .main-right-wrapper {
+    width: 100% !important;
+  }
+  
+  .main-container {
+    order: 3;
+    width: 100% !important;
+    padding: 0 !important;
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .article {
+    padding: 15px;
+  }
+  
+  .article-title h1 {
+    font-size: 20px;
+  }
+}
+
+/* 动画效果 */
+.to-up {
+  animation: to-up 0.5s ease-in-out;
+}
+
+@keyframes to-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 文章样式 */
+.article {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 20px 20px 5px rgba(132,132,132,0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 文章标题样式 - 保持简单 */
+.article-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
