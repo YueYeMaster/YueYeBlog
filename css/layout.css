@@ -203,15 +203,14 @@ nav a.active::after {
 
 /* 左侧栏目的主体 */
 .main-left--block {
-  background-color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 5px;
   box-shadow: 0 0 5px var(--primaryColor);
   overflow: hidden;
   margin-top: 15px;
   padding: 15px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 
 /* 第一个区块不需要顶部margin */
@@ -266,8 +265,8 @@ nav a.active::after {
 .main-left--motto {
   text-align: center;
   margin: 15px 0;
-  font-size: 14px;
-  color: var(--secondaryColor);
+  font-size: 16px;
+  color: #ffffff;
   line-height: 1.8;
 }
 
@@ -756,4 +755,14 @@ nav a.active::after {
   color: #333;
   margin-bottom: 20px;
   text-align: center;
+}
+
+/* 中心内容区域的段落样式 - 统一为黑色文字 */
+.content-text {
+  text-align: center;
+  color: #000000; /* 纯黑色 */
+  padding: 60px 0;
+  margin: 0; /* 重置默认margin */
+  font-size: inherit; /* 继承父元素字体大小 */
+  font-weight: normal; /* 普通字重 */
 }
