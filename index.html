@@ -27,30 +27,30 @@
         <div class="article">
           <h2 class="article-title">知识分享</h2>
           <!-- 博客内容 -->
-          <p style="text-align: center; color: #999; padding: 60px 0;">Hello World</p>
-          <p style="text-align: center; color: #999; padding: 60px 0;">这是YueYe的第一个公开博客 祝你天天开心!</p>
-          <p style="text-align: center; color: #999; padding: 60px 0;">使用JavaScript实现简单的按钮切换文本显示内容</p>
+          <p class="content-text">Hello World</p>
+          <p class="content-text">这是YueYe的第一个公开博客 祝你天天开心!</p>
+          <p class="content-text">使用JavaScript实现简单的按钮切换文本显示内容</p>
         </div>
       `,
       'log': `
         <div class="article">
           <h2 class="article-title">日志</h2>
           <!-- 日志内容 -->
-          <p style="text-align: center; color: #999; padding: 60px 0;">个人日志内容</p>
+          <p class="content-text">个人日志内容</p>
         </div>
       `,
       'about': `
         <div class="article">
           <h2 class="article-title">关于我</h2>
           <!-- 关于我内容 -->
-          <p style="text-align: center; color: #999; padding: 60px 0;">关于我的个人介绍</p>
+          <p class="content-text">关于我的个人介绍</p>
         </div>
       `,
       'categories': `
         <div class="article">
           <h2 class="article-title">赛博日记</h2>
           <!-- 赛博日记内容 -->
-          <p style="text-align: center; color: #999; padding: 60px 0;">赛博日记内容</p>
+          <p class="content-text">赛博日记内容</p>
         </div>
       `
     };
@@ -98,7 +98,7 @@
       let content = pageContents[page] || `
         <div class="article">
           <h2 class="article-title">页面不存在</h2>
-          <p style="text-align: center; color: #999; padding: 60px 0;">抱歉，请求的页面不存在</p>
+          <p class="content-text">抱歉，请求的页面不存在</p>
         </div>
       `;
       
@@ -145,7 +145,13 @@
     
     /* 文章卡片样式 */
     .article {
-      background-color: #fff;
+            border-radius: 12px;
+      /* 关键：半透明背景 +  backdrop-filter 模糊 */
+      background: rgba(255, 255, 255, 0.2); /* 半透明白色，可调整透明度和颜色 */
+      backdrop-filter: blur(10px); /* 模糊程度，数值越大越模糊 */
+      -webkit-backdrop-filter: blur(10px); /* 兼容 Safari */
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* 增加阴影增强层次感 */
+      border: 1px solid rgba(255, 255, 255, 0.3); /* 半透明边框 */
       border-radius: 5px;
       box-shadow: 0 0 5px #333;
       padding: 20px;
@@ -375,6 +381,14 @@
         font-size: 12px;
       }
     }
+        .cursor {
+            border-right: 2px solid #333;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
   </style>
 </head>
 <body>
@@ -389,7 +403,17 @@
         <!-- 头部左侧区域 -->
         <div class="header-left">
         </div>
-        
+        <!-- 居中动态文字 -->
+        <div>
+          <h1 style="color: #fff; font-size: 25px; font-weight: normal; margin: 0; padding: 0; line-height: 60px; text-align: center;">
+            <span id="dynamic-text"></span>
+            <span class="cursor"></span>
+          </h1>
+        </div>
+
+
+
+
         <!-- 头部右侧导航菜单 -->
         <div class="header-right">
           <ul class="header-menu">
@@ -500,11 +524,8 @@
         <div class="article">
           <h2 class="article-title">知识分享</h2>
           <!-- 博客内容 -->
-          <p style="text-align: center; color: #999; padding: 60px 0;">Hello World</p>
-          <p style="text-align: center; color: #999; padding: 60px 0;">这是YueYe的第一个公开博客 祝你天天开心!</p>
-          <p style="text-align: center; color: #999; padding: 60px 0;">使用JavaScript实现简单的按钮切换文本显示内容
-            <h6>在button中引入onclick</h6>
-          </p>
+          <p class="content-text">Hello World</p>
+          <p class="content-text">这是YueYe的第一个公开博客 祝你天天开心!</p>
         </div>
       </div>
       
@@ -997,33 +1018,41 @@
                 <div class="article">
                   <h2 class="article-title">赛博日记</h2>
                   <!-- 赛博日记内容 -->
-                  <p style="text-align: center; color: #999; padding: 60px 0;">日记</p>
-                  <p style="text-align: center; color: #999; padding: 20px 0;">2025.10.29 喜欢雨天在窗台看雨 抽烟 雨爱 期待下一个雨天 现在是凌晨12:30 开始e了不过我想我会好起来的 当我点燃纯的烟 我就知道 我会好起来的 想回到高中(~)</p>
-                  <p style="text-align: center; color: #999; padding: 20px 0;">2025.10.30 再也回不去那年的冬 不会再有人等我太久~ 感觉优化空间还很大 问题不大 慢慢来 等我感受到幸福我就戒烟!</p>
+                  <p class="content-text">日记</p>
+                    <p class="content-text">2025.10.31 发现一个离谱的事 那就是实际日记时间会有一天的偏差 谁叫YueYe是美国作息呢 关于我不想早八直接旷3节高数这件事</p>
+                    <p class="content-text">2025.10.31 也是又活过一天 日子也是好起来了 接到offer了 让我看看怎么个回事 还有 天若有情真的好听!好吧确实也是挺伤心的 问题不大 在学校机房留下了前辈的足迹 这是传承!</p>
+                    <p class="content-text">2025.10.30 再也回不去那年的冬 不会再有人等我太久~ 感觉优化空间还很大 问题不大 慢慢来 等我感受到幸福我就戒烟!</p>
+                    <p class="content-text">2025.10.29 喜欢雨天在窗台看雨 抽烟 雨爱 期待下一个雨天 现在是凌晨12:30 开始e了不过我想我会好起来的 当我点燃纯境 我就知道 我会好起来的 想回到高中(~)</p>
                 </div>
               `,
               blog: `
                 <div class="article">
                   <h2 class="article-title">知识分享</h2>
                   <!-- 知识分享内容 -->
-                  <p style="text-align: center; color: #999; padding: 60px 0;">Hello World</p>
-                  <p style="text-align: center; color: #999; padding: 20px 0;">这是YueYe的第一个公开博客 祝你天天开心!</p>
+                  <p class="content-text">Hello World</p>
+                  <p class="content-text">这是YueYe的第一个公开博客 祝你天天开心!</p>
+                  <p class="content-text">利用js实现文字自动打印删除</p>
                 </div>
               `,
               about: `
                 <div class="article">
                   <h2 class="article-title">关于我</h2>
                   <!-- 关于我内容 -->
-                  <p style="text-align: center; color: #999; padding: 60px 0;">关于我的个人介绍</p>
-                  <p style="text-align: center; color: #999; padding: 20px 0;">manster</p>
+                  <p class="content-text">姓名:YueYe</p>
+                  <p class="content-text">性别:男</p>
+                  <p class="content-text">在校大一学生 喜欢你(哈哈哈)睡觉 吃饭 刷视频</p>
+                  <p class="content-text">QQ:3448176878</p>
+                  <p class="content-text">邮箱:3448176878@qq.com</p>
+                  <p class="content-text">游戏:cs2 Pubg 农 galgame</p>
                 </div>
               `,
               log: `
                 <div class="article">
                   <h2 class="article-title">日志</h2>
                   <!-- 日志内容 -->
-                  <p style="text-align: center; color: #999; padding: 60px 0;">10:28 0.01版本 优化加载 添加音乐盒功能</p>
-                  <p style="text-align: center; color: #999; padding: 20px 0;">10.29 0.02版本 固定音乐盒 优化整体结构 添加ui图标</p>
+                  <p class="content-text">10:28 0.01版本 优化加载 添加音乐盒功能</p>
+                  <p class="content-text">10.29 0.02版本 固定音乐盒 优化整体结构 添加ui图标</p>
+                  <p class="content-text">10.30 0.03版本 添加了主页动态标语 增加了磨砂主题 优化了性能</p>
                 </div>
               `
             };
@@ -1085,6 +1114,58 @@
             
             // 页面加载完成后初始化
             window.addEventListener('load', init);
+          // 动态文字
+             // 定义要展示的文本数组
+        const texts = [
+            "此情可待成追忆,只是当时已惘然",
+            "爱生活,爱自由",
+            "天天开心,永远年轻",
+            "什么都无法舍弃的人,什么都无法改变"
+        ];
+
+        const textElement = document.getElementById('dynamic-text');
+        let currentTextIndex = 0;   // 当前显示的文本索引
+        let currentCharIndex = 0;   // 当前文本的字符索引
+        let isDeleting = false;     // 是否处于“删除”状态
+        let isPausing = false;      // 是否处于“暂停”状态
+
+        // 核心动画函数
+        function animateText() {
+            const currentText = texts[currentTextIndex];
+            if (isDeleting) {
+                // 删除阶段：逐字减少文本
+                textElement.textContent = currentText.slice(0, currentCharIndex);
+                currentCharIndex--;
+                // 删除完成后，切换到下一行并进入暂停
+                if (currentCharIndex < 0) {
+                    isDeleting = false;
+                    isPausing = true;
+                    currentTextIndex = (currentTextIndex + 1) % texts.length; // 循环切换文本
+                    setTimeout(() => {
+                        isPausing = false;
+                        currentCharIndex = 0;
+                    }, 800); // 暂停时间（毫秒）
+                }
+            } else if (!isPausing) {
+                // 打字阶段：逐字增加文本
+                textElement.textContent = currentText.slice(0, currentCharIndex + 1);
+                currentCharIndex++;
+                // 打字完成后，进入删除阶段
+                if (currentCharIndex > currentText.length) {
+                    isDeleting = true;
+                    setTimeout(() => {
+                        animateText();
+                    }, 1000); // 打完字后暂停的时间（毫秒）
+                    return;
+                }
+            }
+            // 递归调用，保持动画持续
+            setTimeout(animateText, isDeleting ? 80 : 150); // 控制打字/删除速度
+        }
+
+        // 启动动画
+        animateText();
+
             </script>
         </div>
       </div>
