@@ -20,117 +20,15 @@
   <link rel="stylesheet" href="css/iconfont.css">
   <!-- 移除对不存在的spa.js的引用 -->
   <!-- 添加内联JavaScript处理按钮点击 -->
-  <script>
-    // 页面内容定义
-    const pageContents = {
-      'index': `
-        <div class="article">
-          <h2 class="article-title">知识分享</h2>
-          <!-- 博客内容 -->
-          <p class="content-text">Hello World</p>
-          <p class="content-text">这是YueYe的第一个公开博客 祝你天天开心!</p>
-          <p class="content-text">使用JavaScript实现简单的按钮切换文本显示内容</p>
-        </div>
-      `,
-      'log': `
-        <div class="article">
-          <h2 class="article-title">日志</h2>
-          <!-- 日志内容 -->
-          <p class="content-text">个人日志内容</p>
-        </div>
-      `,
-      'about': `
-        <div class="article">
-          <h2 class="article-title">关于我</h2>
-          <!-- 关于我内容 -->
-          <p class="content-text">关于我的个人介绍</p>
-        </div>
-      `,
-      'categories': `
-        <div class="article">
-          <h2 class="article-title">赛博日记</h2>
-          <!-- 赛博日记内容 -->
-          <p class="content-text">赛博日记内容</p>
-        </div>
-      `
-    };
-    
-    // 初始化函数
+  <!-- 引入外部JavaScript文件 -->
+  <script src="js/app.js"></script>
+  <!-- 初始化函数
     function init() {
       // 绑定首页按钮点击事件
-      const homeBtn = document.querySelector('.home-btn');
-      if (homeBtn) {
-        homeBtn.addEventListener('click', function() {
-          showContent('index');
-        });
-      }
-      
-      // 使用事件委托处理所有导航链接点击
-      document.addEventListener('click', function(e) {
-        const link = e.target.closest('a[href$=".html"]');
-        if (link) {
-          // 过滤外部链接
-          if (link.hostname === window.location.hostname || link.hostname === '') {
-            e.preventDefault();
-            
-            // 获取页面名称
-            const href = link.getAttribute('href');
-            const page = href.split('.')[0];
-            
-            // 显示对应内容
-            showContent(page);
-            
-            // 更新URL（不刷新页面）
-            if (window.history && window.history.pushState) {
-              window.history.pushState({page: page}, '', href);
-            }
-          }
-        }
-      });
-    }
-    
-    // 显示页面内容函数
-    function showContent(page) {
-      const mainContainer = document.getElementById('main-container');
-      if (!mainContainer) return;
-      
-      // 获取页面内容
-      let content = pageContents[page] || `
-        <div class="article">
-          <h2 class="article-title">页面不存在</h2>
-          <p class="content-text">抱歉，请求的页面不存在</p>
-        </div>
-      `;
-      
-      // 简单的过渡效果
-      mainContainer.style.opacity = '0';
-      
-      setTimeout(function() {
-        mainContainer.innerHTML = content;
-        mainContainer.style.opacity = '1';
-      }, 150);
-      
-      // 更新页面标题
-      updatePageTitle(page);
-    }
-    
-    // 更新页面标题
-    function updatePageTitle(page) {
-      const titles = {
-        'index': '知识分享 | YueYeBlog',
-        'log': '日志 | YueYeBlog',
-        'about': '关于我 | YueYeBlog',
-        'categories': '赛博日记 | YueYeBlog'
-      };
-      
-      if (titles[page]) {
-        document.title = titles[page];
-      }
-    }
-    
+      // 已移至外部js文件
     // DOM加载完成后初始化
-    document.addEventListener('DOMContentLoaded', init);
-  </script>
+    // document.addEventListener('DOMContentLoaded', init);
+  -->
   
   <!-- 页面特定样式 -->
   <style>
@@ -393,10 +291,11 @@
 </head>
 <body>
   <!-- 全局音乐进度加载条 - 显示在页面顶部 -->
-  <div id="global-progress"></div>
+  <div id="global-progress" style="height: 10px; background-color: #07e625;"></div>
   
   <!-- 主容器 -->
   <div class="container w-100 vh-100">
+    
     <!-- 头部导航 -->
     <header class="header">
       <div class="header-wrapper">
@@ -419,9 +318,9 @@
           <ul class="header-menu">
             <!-- 首页导航 -->
             <li>
-              <a href="index.html">
+              <a href="index.html?page=home">
                 <i class="header-menu--icon iconfont icon-shouye"></i>
-                <span class="header-menu--span">首页</span>
+                <span class="header-menu--span">Home</span>
               </a>
             </li>
             
@@ -429,7 +328,7 @@
             <li>
               <a href="log.html">
                 <i class="header-menu--icon iconfont icon-rizhi"></i>
-                <span class="header-menu--span">日志</span>
+                <span class="header-menu--span">Log</span>
               </a>
             </li>
             
@@ -437,7 +336,7 @@
             <li>
               <a href="about.html">
                 <i class="header-menu--icon iconfont icon-guanyuwomen"></i>
-                <span class="header-menu--span">关于我</span>
+                <span class="header-menu--span">About</span>
               </a>
             </li>
           </ul>
@@ -488,7 +387,7 @@
                 <div>
                   <!-- 首页返回按钮 -->
                   <button class="home-btn">
-                    <i class="iconfont icon-shouye"></i> 首页
+                    <i class="iconfont icon-shouye"></i> Home
                   </button>
                 </div>
               </div>
@@ -500,17 +399,17 @@
             <ul class="main-left--menu">
               <!-- 首页链接 -->
               <li>
-                <a href="index.html">
-                  <i class="iconfont icon-shouye"></i>
-                  <span class="header-menu--span">知识分享</span>
-                </a>
+                <a href="knowledge.html">
+                <i class="iconfont icon-shouye"></i>
+                <span class="header-menu--span">Knowledge</span>
+              </a>
               </li>
               
-              <!-- 分类链接 -->
+              <!-- 日记链接 -->
               <li>
-                <a href="categories.html">
+                <a href="diary.html">
                   <i class="iconfont icon-fenlei"></i>
-                  <span class="header-menu--span">赛博日记</span>
+                  <span class="header-menu--span">Diary</span>
                 </a>
               </li>
             </ul>
@@ -519,15 +418,62 @@
       </div>
       
       <!-- 中间内容区域 -->
+       
       <div id="main-container" class="main-container">
-        <!-- 文章展示区域 -->
-        <div class="article">
-          <h2 class="article-title">知识分享</h2>
-          <!-- 博客内容 -->
-          <p class="content-text">Hello World</p>
-          <p class="content-text">这是YueYe的第一个公开博客 祝你天天开心!</p>
+        <!-- Home内容区域 -->
+        <div id="home-content" class="article">
+          <h2 class="article-title">Home</h2>
+          <!-- Home页面内容 -->
+           <!-- 实现分块板块 -->
+            
+           <p class="content-text">主页正在努力建设中~</p>
+
+        </div>
+        
+        <!-- Knowledge内容区域 -->
+        <div id="knowledge-content" class="article">
+          <h2 class="article-title">Knowledge</h2>
         </div>
       </div>
+      
+      <script>
+        // 根据URL参数显示对应的内容区域
+        function showContentByPage() {
+          // 获取URL参数
+          const urlParams = new URLSearchParams(window.location.search);
+          const page = urlParams.get('page') || 'home'; // 默认显示home
+          
+          // 获取内容区域元素
+          const homeContent = document.getElementById('home-content');
+          const knowledgeContent = document.getElementById('knowledge-content');
+          
+          // 根据参数显示或隐藏内容
+          if (page === 'home') {
+            homeContent.style.display = 'block';
+            knowledgeContent.style.display = 'none';
+          } else if (page === 'knowledge') {
+            homeContent.style.display = 'none';
+            knowledgeContent.style.display = 'block';
+          } else {
+            // 默认显示home
+            homeContent.style.display = 'block';
+            knowledgeContent.style.display = 'none';
+          }
+        }
+        
+        // 页面加载时执行
+        window.onload = showContentByPage;
+        
+        // 为首页返回按钮添加点击事件
+        document.addEventListener('DOMContentLoaded', function() {
+          const homeBtn = document.querySelector('.home-btn');
+          if (homeBtn) {
+            homeBtn.addEventListener('click', function() {
+              window.location.href = 'index.html?page=home';
+            });
+          }
+        });
+      </script>
       
       <!-- 右侧栏 - 直接使用main-right类 -->
       <div class="main-right">
@@ -540,8 +486,8 @@
           
           <!-- 音乐信息显示区域 -->
           <div class="music-info">
-            <div class="music-title" id="musicTitle">暂无播放</div>
-            <div class="music-artist" id="musicArtist">点击播放按钮开始</div>
+            <div class="music-title" id="musicTitle">No Music Playing</div>
+            <div class="music-artist" id="musicArtist">Play</div>
           </div>
           
           <!-- 播放器控制区域 -->
@@ -584,540 +530,17 @@
           
           <!-- 音乐列表 -->
           <div class="music-list">
-            <div class="music-list-title">音乐列表</div>
+            <div class="music-list-title">Music</div>
             <div class="music-items" id="musicItems">
               <!-- 音乐列表将由JavaScript动态生成 -->
             </div>
           </div>
           
           <!-- 音乐播放器JavaScript代码 -->
+          <script src="js/music.js"></script>
           <script>
-            // 音乐数据列表
-            const musicList = [
-              {
-                id: 4,
-                title: "冬眠2023",
-                artist: "阿yueyue",
-                src: "./music/冬眠2023.MP3",
-                cover: "../imgs/头像48px.png"
-              },
-              {
-                id: 2,
-                title: "天若有情",
-                artist: "网络歌手",
-                src: "./music/天若有情.MP3",
-                cover: "../imgs/头像48px.png"
-              },
-              {
-                id: 3,
-                title: "罗生门",
-                artist: "张子豪",
-                src: "./music/罗生门.MP3",
-                cover: "../imgs/头像48px.png"
-              },
-              {
-                id: 1,
-                title: "我走后",
-                artist: "小咪",
-                src: "./music/我走后.MP3",
-                cover: "../imgs/头像48px.png"
-              }
-            ];
-            
-            // 获取DOM元素
-            const audio = document.getElementById('myAudio');
-            const playBtn = document.getElementById('playBtn');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const progress = document.getElementById('progress');
-            const progressBar = document.querySelector('.progress-bar');
-            const currentTimeEl = document.getElementById('currentTime');
-            const totalTimeEl = document.getElementById('totalTime');
-            const musicTitleEl = document.getElementById('musicTitle');
-            const musicArtistEl = document.getElementById('musicArtist');
-            const musicItemsEl = document.getElementById('musicItems');
-            const alarmEl = document.querySelector('.alarm');
-            
-            // 当前播放索引
-            let currentMusicIndex = 0;
-            // 是否正在播放
-            let isPlaying = false;
-            
-            /**
-             * 初始化音乐列表
-             * 创建音乐列表项并添加点击事件
-             */
-            function initMusicList() {
-              musicItemsEl.innerHTML = '';
-              musicList.forEach((music, index) => {
-                const musicItem = document.createElement('div');
-                musicItem.classList.add('music-item');
-                if (index === currentMusicIndex) {
-                  musicItem.classList.add('active');
-                }
-                musicItem.innerHTML = `
-                  <div class="music-item-index">${index + 1}</div>
-                  <div class="music-item-info">
-                    <div class="music-item-title">${music.title}</div>
-                    <div class="music-item-artist">${music.artist}</div>
-                  </div>
-                `;
-                musicItem.addEventListener('click', () => {
-                  currentMusicIndex = index;
-                  loadMusic();
-                  playMusic();
-                });
-                musicItemsEl.appendChild(musicItem);
-              });
-            }
-            
-            /**
-             * 加载音乐
-             * 设置音频源、更新标题和艺术家信息、重置播放状态
-             */
-            function loadMusic() {
-              const music = musicList[currentMusicIndex];
-              const globalProgress = document.getElementById('global-progress');
-              audio.src = music.src;
-              musicTitleEl.textContent = music.title;
-              musicArtistEl.textContent = music.artist;
-              
-              // 重置播放状态和旋转动画
-              isPlaying = false;
-              playBtn.innerHTML = '<i class="iconfont icon-play"></i>';
-              alarmEl.style.animation = 'none';
-              alarmEl.classList.remove('rotating');
-              // 重置全局进度条
-              globalProgress.style.width = '0%';
-              
-              // 更新当前播放高亮
-              document.querySelectorAll('.music-item').forEach((item, index) => {
-                if (index === currentMusicIndex) {
-                  item.classList.add('active');
-                } else {
-                  item.classList.remove('active');
-                }
-              });
-            }
-            
-            /**
-             * 播放音乐
-             * 开始播放音频，更新播放按钮状态，添加旋转动画
-             */
-            function playMusic() {
-              audio.play().then(() => {
-                isPlaying = true;
-                playBtn.innerHTML = '<i class="iconfont icon-pause"></i>';
-                // 添加旋转动画
-                alarmEl.style.animation = 'rotate 20s linear infinite';
-                alarmEl.classList.add('rotating'); // 添加旋转类
-              }).catch(error => {
-                console.error('播放失败:', error);
-                alert('音乐播放失败，请检查音乐文件路径');
-              });
-            }
-            
-            /**
-             * 暂停音乐
-             * 暂停音频，更新播放按钮状态，停止旋转动画
-             */
-            function pauseMusic() {
-              audio.pause();
-              isPlaying = false;
-              playBtn.innerHTML = '<i class="iconfont icon-play"></i>';
-              // 停止旋转动画
-              alarmEl.style.animation = 'none';
-              alarmEl.classList.remove('rotating'); // 移除旋转类
-            }
-            
-            /**
-             * 播放下一首
-             * 更新当前索引，加载并播放下一首歌曲
-             */
-            function nextMusic() {
-              currentMusicIndex = (currentMusicIndex + 1) % musicList.length;
-              loadMusic();
-              if (isPlaying) {
-                playMusic();
-              }
-            }
-            
-            /**
-             * 播放上一首
-             * 更新当前索引，加载并播放上一首歌曲
-             */
-            function prevMusic() {
-              currentMusicIndex = (currentMusicIndex - 1 + musicList.length) % musicList.length;
-              loadMusic();
-              if (isPlaying) {
-                playMusic();
-              }
-            }
-            
-            /**
-             * 更新进度条
-             * 根据音频播放进度更新进度条宽度和时间显示
-             */
-            function updateProgress(e) {
-              const { duration, currentTime } = e.srcElement;
-              const progressPercent = (currentTime / duration) * 100;
-              progress.style.width = `${progressPercent}%`;
-              
-              // 更新全局进度条
-              const globalProgress = document.getElementById('global-progress');
-              globalProgress.style.width = `${progressPercent}%`;
-              
-              // 更新时间显示
-              currentTimeEl.textContent = formatTime(currentTime);
-              if (duration) {
-                totalTimeEl.textContent = formatTime(duration);
-              }
-            }
-            
-            /**
-             * 跳转到指定进度
-             * 根据点击位置设置音频播放进度
-             */
-            function setProgress(e) {
-              const width = this.clientWidth;
-              const clickX = e.offsetX;
-              const duration = audio.duration;
-              audio.currentTime = (clickX / width) * duration;
-            }
-            
-            /**
-             * 格式化时间
-             * 将秒数转换为 mm:ss 格式
-             */
-            function formatTime(seconds) {
-              const minutes = Math.floor(seconds / 60);
-              const secs = Math.floor(seconds % 60);
-              return `${minutes < 10 ? '0' : ''}${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-            }
-            
-            // 事件监听器设置
-            playBtn.addEventListener('click', () => {
-              if (isPlaying) {
-                pauseMusic();
-              } else {
-                // 确保先加载第一首音乐再播放
-                if (!audio.src || !audio.src.includes(musicList[currentMusicIndex].src)) {
-                  loadMusic();
-                }
-                playMusic();
-              }
-            });
-            
-            prevBtn.addEventListener('click', prevMusic);
-            nextBtn.addEventListener('click', nextMusic);
-            
-            // 进度更新事件
-            audio.addEventListener('timeupdate', updateProgress);
-            
-            // 点击进度条跳转事件
-            progressBar.addEventListener('click', setProgress);
-            
-            // 音乐播放结束自动播放下一首
-            audio.addEventListener('ended', nextMusic);
-            
-            /**
-             * 初始化函数
-             * 添加样式、初始化音乐列表、尝试自动播放
-             */
-            function init() {
-              // 添加图标样式（简单的播放控制图标）
-              const style = document.createElement('style');
-              style.textContent = `
-                /* 播放控制图标样式 */
-                .icon-play::before { content: '▶'; }
-                .icon-pause::before { content: '⏸'; }
-                .icon-prev::before { content: '⏮'; }
-                .icon-next::before { content: '⏭'; }
-                
-                /* 音乐信息样式 */
-                .music-info {
-                  text-align: center;
-                  margin-bottom: 10px;
-                  padding: 10px;
-                  background: rgba(255, 255, 255, 0.9);
-                  border-radius: 10px;
-                }
-                .music-title {
-                  font-weight: bold;
-                  color: #333;
-                  margin-bottom: 5px;
-                }
-                .music-artist {
-                  font-size: 12px;
-                  color: #666;
-                }
-                
-                /* 进度条样式 - 修改为放在播放按钮下方 */
-                .player {
-                  position: relative;
-                  margin-bottom: 15px;
-                }
-                .progress-container {
-                  margin: 10px 0;
-                  position: static;
-                }
-                .progress-bar {
-                  width: 100%;
-                  height: 4px;
-                  background: #ddd;
-                  border-radius: 2px;
-                  cursor: pointer;
-                  margin-bottom: 5px;
-                }
-                .progress {
-                  height: 100%;
-                  background: #42b983;
-                  border-radius: 2px;
-                  width: 0%;
-                  position: relative;
-                  z-index: 1;
-                }
-                .time-info {
-                  display: flex;
-                  justify-content: space-between;
-                  font-size: 10px;
-                  color: #999;
-                }
-                
-                /* 解决绿条遮挡问题 - 确保进度条不会溢出容器 */
-                #main-right-wrapper-music {
-                  position: relative;
-                  z-index: 10;
-                }
-                
-                /* 确保进度条不会覆盖页面 */
-                .progress-container {
-                  overflow: hidden;
-                }
-                
-                /* 右侧盒子对齐样式 */
-                .main-right-wrapper {
-                  width: var(--mainRightWidth);
-                  margin-left: auto;
-                }
-                .main-right-wrapper-music {
-                  width: 100%;
-                }
-                
-                /* 音乐列表样式 */
-                .music-list {
-                  background: rgba(255, 255, 255, 0.9);
-                  border-radius: 10px;
-                  padding: 10px;
-                  max-height: 200px;
-                  overflow-y: auto;
-                  margin-bottom: 15px;
-                }
-                .music-list-title {
-                  font-weight: bold;
-                  margin-bottom: 10px;
-                  color: #333;
-                }
-                .music-item {
-                  display: flex;
-                  align-items: center;
-                  padding: 8px 0;
-                  border-bottom: 1px solid #eee;
-                  cursor: pointer;
-                  transition: background 0.2s;
-                }
-                .music-item:hover {
-                  background: #f5f5f5;
-                }
-                .music-item.active {
-                  color: #42b983;
-                }
-                .music-item-index {
-                  width: 20px;
-                  font-size: 12px;
-                  margin-right: 10px;
-                }
-                .music-item-info {
-                  flex: 1;
-                }
-                .music-item-title {
-                  font-size: 14px;
-                }
-                .music-item-artist {
-                  font-size: 12px;
-                  color: #999;
-                }
-                
-                /* 旋转动画 */
-                @keyframes rotate {
-                  from { transform: rotate(0deg); }
-                  to { transform: rotate(360deg); }
-                }
-                
-                /* 按钮样式增强 */
-                .control {
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  position: relative;
-                  padding: 10px;
-                }
-                
-                /* 调整头像位置使其在左侧 */
-                .alarm {
-                  position: relative;
-                  top: 0;
-                  left: 0;
-                  margin-right: 20px;
-                }
-                
-                /* 确保头像可以自转 */
-                .alarm.rotating::before {
-                  animation: rotate 10s linear infinite;
-                }
-                
-                .buts {
-                  display: flex;
-                  align-items: center;
-                  gap: 15px;
-                }
-                .prev, .play, .next {
-                  cursor: pointer;
-                  font-size: 20px;
-                  color: #333;
-                  transition: color 0.3s;
-                }
-                .prev:hover, .play:hover, .next:hover {
-                  color: #42b983;
-                }
-                .play {
-                  font-size: 24px;
-                }
-              `;
-              document.head.appendChild(style);
-              
-              // 初始化音乐列表
-              initMusicList();
-              
-              // 页面加载后尝试自动播放音乐
-              setTimeout(() => {
-                  audio.play().then(() => {
-                      isPlaying = true;
-                      playBtn.innerHTML = '<i class="iconfont icon-pause"></i>';
-                      const alarm = document.querySelector('.alarm');
-                      alarm.style.animation = 'rotate 20s linear infinite';
-                      alarm.classList.add('rotating'); // 添加旋转动画
-                  }).catch(error => {
-                      console.log('自动播放失败，可能受到浏览器限制:', error);
-                  });
-              }, 500);
-            }
-            // 定义文章内容对象
-            const articles = {
-              diary: `
-                <div class="article">
-                  <h2 class="article-title">赛博日记</h2>
-                  <!-- 赛博日记内容 -->
-                  <p class="content-text">2025.10.31:23:33 听雨的声音 一滴滴清晰你的呼吸像雨滴渗入我的爱里 真希望雨能下不停让想念继续 让爱变透明我爱上给我勇气的 Rainie love 真希望雨能下不停</p>
-                  <p class="content-text">2025.10.31:23:28 就离谱 翘水课去校招面试 被校招hr狠狠羞辱 绷不住了 这和被强奸后对面还狠狠不爽有什么区别 感觉一整天大部分时间都被浪费了 就离谱 新火机也是拿到手了 爽飞 现在外面下小雨了 已经想象到了听雨爱抽纯境的爽了 还有yosobi的歌曲真好听!!!! </p>
-                    <p class="content-text">2025.10.31 发现一个离谱的事 那就是实际日记时间会有一天的偏差 谁叫YueYe是美国作息呢 关于我不想早八直接旷3节高数这件事</p>
-                    <p class="content-text">2025.10.31 也是又活过一天 日子也是好起来了 接到offer了 让我看看怎么个回事 还有 天若有情真的好听!好吧确实也是挺伤心的 问题不大 在学校机房留下了前辈的足迹 这是传承!</p>
-                    <p class="content-text">2025.10.30 再也回不去那年的冬 不会再有人等我太久~ 感觉优化空间还很大 问题不大 慢慢来 等我感受到幸福我就戒烟!</p>
-                    <p class="content-text">2025.10.29 喜欢雨天在窗台看雨 抽烟 雨爱 期待下一个雨天 现在是凌晨12:30 开始e了不过我想我会好起来的 当我点燃纯境 我就知道 我会好起来的 想回到高中(~)</p>
-                </div>
-              `,
-              blog: `
-                <div class="article">
-                  <h2 class="article-title">知识分享</h2>
-                  <!-- 知识分享内容 -->
-                  <p class="content-text">Hello World</p>
-                  <p class="content-text">这是YueYe的第一个公开博客 祝你天天开心!</p>
-                  <p class="content-text">利用js实现文字自动打印删除</p>
-                </div>
-              `,
-              about: `
-                <div class="article">
-                  <h2 class="article-title">关于我</h2>
-                  <!-- 关于我内容 -->
-                  <p class="content-text">姓名:YueYe</p>
-                  <p class="content-text">性别:男</p>
-                  <p class="content-text">在校大一学生 喜欢你(哈哈哈)睡觉 吃饭 刷视频</p>
-                  <p class="content-text">QQ:3448176878</p>
-                  <p class="content-text">邮箱:3448176878@qq.com</p>
-                  <p class="content-text">游戏:cs2 Pubg 农 galgame</p>
-                </div>
-              `,
-              log: `
-                <div class="article">
-                  <h2 class="article-title">日志</h2>
-                  <!-- 日志内容 -->
-                  <p class="content-text">10:28 0.01版本 优化加载 添加音乐盒功能</p>
-                  <p class="content-text">10.29 0.02版本 固定音乐盒 优化整体结构 添加ui图标</p>
-                  <p class="content-text">10.30 0.03版本 添加了主页动态标语 增加了磨砂主题 优化了性能</p>
-                </div>
-              `
-            };
-            
-            // 显示文章内容的函数
-            function showArticle(articleKey) {
-              const contentArea = document.getElementById('main-container');
-              if (contentArea && articles[articleKey]) {
-                // 添加简单的过渡效果
-                contentArea.style.opacity = '0';
-                setTimeout(() => {
-                  contentArea.innerHTML = articles[articleKey];
-                  contentArea.style.opacity = '1';
-                }, 150);
-                console.log('切换到文章:', articleKey);
-              } else {
-                console.error('找不到main-container元素或文章内容');
-              }
-            }
-            
-            // 重新实现按钮绑定，使用更简单直接的方法
-            function setupNavigation() {
-              // 添加点击事件委托到document
-              document.addEventListener('click', function(e) {
-                // 检查是否点击了导航链接
-                const link = e.target.closest('a');
-                if (link) {
-                  // 检查链接是否指向我们要处理的页面
-                  const href = link.getAttribute('href');
-                  
-                  // 根据链接确定要显示的文章
-                  if (href === 'index.html' || href === '/' || href === '') {
-                    e.preventDefault();
-                    showArticle('blog');
-                  } else if (href === 'categories.html') {
-                    e.preventDefault();
-                    showArticle('diary');
-                  } else if (href === 'log.html') {
-                    e.preventDefault();
-                    showArticle('log');
-                  } else if (href === 'about.html') {
-                    e.preventDefault();
-                    showArticle('about');
-                  }
-                  // 其他链接不阻止默认行为
-                }
-                
-                // 检查是否点击了首页按钮
-                if (e.target.closest('.home-btn')) {
-                  showArticle('blog');
-                }
-              });
-              
-              console.log('导航系统已初始化');
-            }
-            
-            // 页面加载完成后初始化导航
-            window.addEventListener('DOMContentLoaded', setupNavigation);
-            
-            // 页面加载完成后初始化
-            window.addEventListener('load', init);
-          // 动态文字
-             // 定义要展示的文本数组
-        const texts = [
+            // 动态文字动画功能
+            const texts = [
             "此情可待成追忆,只是当时已惘然",
             "爱生活,爱自由",
             "天天开心,永远年轻",
