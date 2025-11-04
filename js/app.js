@@ -48,12 +48,27 @@ const articles = {
   home: `
     <div id="home-content" class="article">
       <h2 class="article-title">星野 アイ</h2>
+      <div class="article-home">
+      <div style="width: 24%;
+          height: 200px; background-color: #07e625;"></div>
+          <div style="width: 24%;
+          height: 200px; background-color: #40a14d;"></div>
+          <div style="width: 24%;
+          height: 200px; background-color: #0b2364;"></div>
+          <div style="width: 24%;
+          height: 200px; background-color: #40a14d;"></div>
+
+
+
+
+      </div>
     </div>
   `,
   knowledge: `
     <div class="article">
       <h2 class="article-title">知识分享</h2>
       <!-- 知识分享内容 -->
+      <p class="content-text">switch 穿透问题的应用 在多个case中 若一个case为true后 不写入break 程序会默认后面的代码 均为true 可以利用这个特性 实现一些代码的简写</p>
       <p class="content-text">在路径试题中在标准格子中 最短路径等于 总步数的阶乘 除于 x轴的阶乘 y轴的阶乘
 
 ### 单一禁止格子 
@@ -79,6 +94,7 @@ const articles = {
     <div class="article">
       <h2 class="article-title">赛博日记</h2>
       <!-- diary内容 -->
+      <p class="content-text">2025.11.4.19.53 今天身体不舒服 暂时不想更新 预计添加一个留言板 这应该说是质的飞跃 估计得有几天 分享一些见闻吧 人这一生最重要的就是不留下遗憾 一切努力其实放在更大的局面来开 都是无关紧要的 自己只需要为自己人生负责 任何人都不会因为你的消失或出现发生太大的变化 除了在乎你的人 和你在乎的人 但生活总得继续 天天开心 宝贝~</p>
       <p class="content-text">2025.11.3.22:31 最近心口老是很痛 不知道还可以活多久 希望可以天天开心呢 等我死了 这就是我的赛博遗产 我要把我的资源全发这上面 狠狠的旷课 人生就是旷野! 爱! 想起来了 我以前的爱是爱!!</p>
       <p class="content-text">2025.11.2.23:04 有想法了 但是得先睡觉 这很重要 希望我可以天天开心 不再emo 成为一个真正的man! 早睡 晚安 !!!!!!!!</p>
       <p class="content-text">2025.11.2:16:30 好吧 睡眠真的很重要 决定好好睡觉 JavaScript一定得好好学 重启明日方舟 作为开服老玩家 有种朝花夕拾的感觉 (emo时刻 也许我去年就应该smoking 只是因为你推迟的一年 所以问题不大) 写什么完全取决于我现在听什么类型的歌曲 hhh</p>
