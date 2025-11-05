@@ -48,19 +48,37 @@ const articles = {
   home: `
     <div id="home-content" class="article">
       <h2 class="article-title">星野 アイ</h2>
+      <div class="YueYeMaster">
+      <span>Y</span>
+      <span>u</span>
+      <span>e</span>
+      <span>Y</span>
+      <span>e</span>
+      <span>M</span>
+      <span>a</span>
+      <span>s</span>
+      <span>t</span>
+      <span>e</span>
+      <span>r</span>
+      <span>!</span>
+      </div>
       <div class="article-home">
-      <div style="width: 24%;
-          height: 200px; background-color: #07e625;"></div>
-          <div style="width: 24%;
-          height: 200px; background-color: #40a14d;"></div>
-          <div style="width: 24%;
-          height: 200px; background-color: #0b2364;"></div>
-          <div style="width: 24%;
-          height: 200px; background-color: #40a14d;"></div>
-
-
-
-
+      <div class="home-background-link">
+        <img src="./imgs2/星野爱.jpg" alt="星野爱" id="img1">
+        <div class="photo-text">感悟心得</div>
+      </div>
+      <div class="home-background-link">
+        <img src="./imgs2/伊雷娜.jpg" alt="伊雷娜" id="img2">
+        <div class="photo-text">我追的番</div>
+      </div>
+      <div class="home-background-link">
+        <img src="./imgs2/薇尔莉特.jpg" alt="薇尔莉特" id="img3">
+        <div class="photo-text">我听的歌</div>
+      </div>
+      <div class="home-background-link">
+        <img src="./imgs2/樱岛麻衣.jpg" alt="樱岛麻衣" id="img4">
+        <div class="photo-text">一些工具</div>
+      </div>
       </div>
     </div>
   `,
@@ -94,6 +112,7 @@ const articles = {
     <div class="article">
       <h2 class="article-title">赛博日记</h2>
       <!-- diary内容 -->
+       <p class="content-text">2025.11.5.18:21 感觉有点迷茫 不知道该学啥 学的语法都是半吊子 没有很深入的了解 竞赛也不好找队友 不知道 不知道 不知道 不知道 不知道 活着就好 其他的随缘吧! 我的耳机仓 我日!!!!!! 听了一下2018年的歌单 一种茫然的感觉 好像我一直都在回忆过去 当然可能并非我一个人这样 不过好像严重一些吧 问题不大 基本上所有旧物都会留着 今天是 回忆时刻!</p>
       <p class="content-text">2025.11.4.19.53 今天身体不舒服 暂时不想更新 预计添加一个留言板 这应该说是质的飞跃 估计得有几天 分享一些见闻吧 人这一生最重要的就是不留下遗憾 一切努力其实放在更大的局面来开 都是无关紧要的 自己只需要为自己人生负责 任何人都不会因为你的消失或出现发生太大的变化 除了在乎你的人 和你在乎的人 但生活总得继续 天天开心 宝贝~</p>
       <p class="content-text">2025.11.3.22:31 最近心口老是很痛 不知道还可以活多久 希望可以天天开心呢 等我死了 这就是我的赛博遗产 我要把我的资源全发这上面 狠狠的旷课 人生就是旷野! 爱! 想起来了 我以前的爱是爱!!</p>
       <p class="content-text">2025.11.2.23:04 有想法了 但是得先睡觉 这很重要 希望我可以天天开心 不再emo 成为一个真正的man! 早睡 晚安 !!!!!!!!</p>
@@ -119,16 +138,17 @@ const articles = {
       <!-- 关于我内容 -->
       <p class="content-text">姓名:YueYe</p>
       <p class="content-text">性别:?</p>
-      <p class="content-text">在校大学生 喜欢你(哈哈哈)睡觉 吃饭 刷视频</p>
+      <p class="content-text">年龄:19</p>
       <p class="content-text">QQ:3448176878</p>
       <p class="content-text">邮箱:3448176878@qq.com</p>
-      <p class="content-text">游戏:cs2 Pubg 农 galgame</p>
+      <p class="content-text">游戏:cs2 Pubg 农 galgame 舟舟 </p>
     </div>
   `,
   log: `
     <div class="article">
       <h2 class="article-title">日志</h2>
       <!-- 日志内容 -->
+       <p class="content-text">11.5 0.06版本 home页面迎来大变 优化了悬停效果 YueYeMaster!</p>
       <p class="content-text">11.3 0.05vertion 添加了setting按钮 可以切换雨天 晴天 以及透明主题 隐藏主题 优化了悬停效果 添加了成立时间表</p>
       <p class="content-text">11.2 0.04版本 修复了中心动态文字不居中的问题 同时分离了home 以及knowledge 页面 分离了js css文件</p>
       <p class="content-text">10.30 0.03版本 添加了主页动态标语 增加了磨砂主题 优化了性能</p>
@@ -196,6 +216,8 @@ function setupNavigation() {
 function initDynamicText() {
   // 定义要展示的文本数组
   const texts = [
+            "'星野 アイ'",
+            "YueYeMaster!",
             "'向日葵的花语是 热烈的爱!'",
             "'是你流的泪晕开'",
             "'It's been so long that I can't tell whether it's like or obsession'",
