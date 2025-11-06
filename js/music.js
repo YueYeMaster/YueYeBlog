@@ -2,30 +2,30 @@
 const musicList = [
   {
     id: 4,
-    title: "冬眠2023",
-    artist: "阿yueyue",
-    src: "./music/冬眠2023.MP3",
+    title: "花びらたちのマーチ (花瓣的游行)",
+    artist: "Aimer (エメ)",
+    src: "./music/花びらたちのマーチ (花瓣的游行).MP3",
     cover: "../imgs/头像.png"
   },
   {
     id: 2,
-    title: "天若有情",
-    artist: "网络歌手",
-    src: "./music/天若有情.MP3",
+    title: "リテラチュア（文学)",
+    artist: "上田麗奈 (うえだ れいな)",
+    src: "./music/リテラチュア（文学).MP3",
     cover: "../imgs/头像.png"
   },
   {
     id: 3,
-    title: "罗生门",
-    artist: "张子豪",
-    src: "./music/罗生门.MP3",
+    title: "三葉のテーマ (三叶的主题音乐)",
+    artist: "RADWIMPS (ラッドウィンプス)",
+    src: "./music/三葉のテーマ (三叶的主题音乐).MP3",
     cover: "../imgs/头像.png"
   },
   {
     id: 1,
-    title: "我走后",
-    artist: "小咪",
-    src: "./music/我走后.MP3",
+    title: "アイドル (偶像)",
+    artist: "YOASOBI",
+    src: "./music/アイドル (偶像).MP3",
     cover: "../imgs/头像.png"
   }
 ];

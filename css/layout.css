@@ -260,13 +260,17 @@ nav a.active::after {
   display: flex;
   gap: 10px;
 }
-
 /* 用户标签样式 */
 .main-left--tag {
   font-size: 12px;
   padding: 2px 8px;
   background-color: #f0f0f0;
   border-radius: 10px;
+}
+.main-left--tag:hover{
+  transform: scale(1.2);
+  transition: all 0.6s ease;
+  color: #42b983;
 }
 
 /* 个性签名 */
@@ -622,7 +626,6 @@ nav a.active::after {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
-
 /* 全局音乐进度加载条 */
 #global-progress {
   position: fixed;
@@ -631,7 +634,7 @@ nav a.active::after {
   width: 0%;
   height: 2px;
   background: #42b983;
-  z-index: 999999;
+  z-index: 999999999;
   transition: width 0.1s linear;
 }
 
@@ -769,11 +772,16 @@ nav a.active::after {
 /* 中心内容区域的段落样式 - 统一为黑色文字 */
 .content-text {
   text-align: center;
-  color: #000000; /* 纯黑色 */
-  padding: 60px 0;
+  color: #333;
+  padding: 40px 0;
   margin: 0; /* 重置默认margin */
   font-size: inherit; /* 继承父元素字体大小 */
   font-weight: normal; /* 普通字重 */
+}
+.content-text:hover{
+  color: #000000;
+  transform: scale(1.05);
+  transition: all 0.6s ease;
 }
 
 

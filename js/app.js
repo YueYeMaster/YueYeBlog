@@ -81,6 +81,36 @@ const articles = {
       </div>
       </div>
     </div>
+
+     <div id="home-content" class="article">
+      <div class="YueYeMaster">
+      <span>ゆ</span>
+      <span>う</span>
+      <span>き</span>
+      <span>あ</span>
+      <span>す</span>
+      <span>な</span>
+      </div>
+             <div class="article-home">
+      <div class="home-background-link">
+        <img src="./imgs2/三叶.jpg" alt="三叶" id="img5">
+        <div class="photo-text">动漫壁纸</div>
+      </div>
+      <div class="home-background-link">
+        <img src="./imgs2/亚丝娜.jpg" alt="亚丝娜" id="img6">
+        <div class="photo-text">生活碎片</div>
+      </div>
+      <div class="home-background-link">
+        <img src="./imgs2/艾拉.jpg" alt="艾拉" id="img7">
+        <div class="photo-text">人格测试</div>
+      </div>
+      <div class="home-background-link">
+        <img src="./imgs2/蝶祈.jpg" alt="蝶祈" id="img8">
+        <div class="photo-text">表白工具</div>
+      </div>
+      </div>
+      </div>
+    </div>
   `,
   knowledge: `
     <div class="article">
@@ -112,7 +142,8 @@ const articles = {
     <div class="article">
       <h2 class="article-title">赛博日记</h2>
       <!-- diary内容 -->
-      <p class="content-text">2025/11.6.14:02 爽飞 恩格尔系数拉的最高的一个月 想要成为phigros高手 入了小板子和一个iqoowatchgt 深夜突发奇想 直接熬了个通宵挑选 小旷3节早八高数 问题不大 感觉我是个大帅b</p>
+       <p class="content-text">2025.11.7.00:02 也许我就是适合一个人 之前的所有都是一份礼物 准备暂停更新blog 搞搞luogu题目玩玩 有时候活着挺没意思的 有时候有特别 怎么说 就是很奇怪吧 infp-a 无敌了孩子 能开心一天是一天吧 万一明天就死翘翘了呢 最近气胸的症状又犯了 感觉浑身难受 185/60 体脂率15% 总感觉得了癌症一样 我得把我终生收集的好片放在上面 这样也算一种活着 哈哈哈 一个为了精神享受 可以每天不吃不喝的男人 旷课多了 好像也没什么大不了 关键是真的很水啊 不喜欢拘束的感觉</p>
+      <p class="content-text">2025.11.6.14:02 爽飞 恩格尔系数拉的最高的一个月 想要成为phigros高手 入了小板子和一个iqoowatchgt 深夜突发奇想 直接熬了个通宵挑选 小旷3节早八高数 问题不大 感觉我是个大帅b</p>
        <p class="content-text">2025.11.5.18:21 感觉有点迷茫 不知道该学啥 学的语法都是半吊子 没有很深入的了解 竞赛也不好找队友 不知道 不知道 不知道 不知道 不知道 活着就好 其他的随缘吧! 我的耳机仓 我日!!!!!! 听了一下2018年的歌单 一种茫然的感觉 好像我一直都在回忆过去 当然可能并非我一个人这样 不过好像严重一些吧 问题不大 基本上所有旧物都会留着 今天是 回忆时刻!</p>
       <p class="content-text">2025.11.4.19.53 今天身体不舒服 暂时不想更新 预计添加一个留言板 这应该说是质的飞跃 估计得有几天 分享一些见闻吧 人这一生最重要的就是不留下遗憾 一切努力其实放在更大的局面来开 都是无关紧要的 自己只需要为自己人生负责 任何人都不会因为你的消失或出现发生太大的变化 除了在乎你的人 和你在乎的人 但生活总得继续 天天开心 宝贝~</p>
       <p class="content-text">2025.11.3.22:31 最近心口老是很痛 不知道还可以活多久 希望可以天天开心呢 等我死了 这就是我的赛博遗产 我要把我的资源全发这上面 狠狠的旷课 人生就是旷野! 爱! 想起来了 我以前的爱是爱!!</p>
@@ -151,6 +182,7 @@ const articles = {
     <div class="article">
       <h2 class="article-title">日志</h2>
       <!-- 日志内容 -->
+       <p class="content-text">11.7 0.07版本 全局磨砂 交互效果优化</p>
        <p class="content-text">11.5 0.06版本 home页面迎来大变 优化了悬停效果 YueYeMaster!</p>
       <p class="content-text">11.3 0.05vertion 添加了setting按钮 可以切换雨天 晴天 以及透明主题 隐藏主题 优化了悬停效果 添加了成立时间表</p>
       <p class="content-text">11.2 0.04版本 修复了中心动态文字不居中的问题 同时分离了home 以及knowledge 页面 分离了js css文件</p>
