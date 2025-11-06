@@ -112,6 +112,7 @@ const articles = {
     <div class="article">
       <h2 class="article-title">赛博日记</h2>
       <!-- diary内容 -->
+      <p class="content-text">2025/11.6.14:02 爽飞 恩格尔系数拉的最高的一个月 想要成为phigros高手 入了小板子和一个iqoowatchgt 深夜突发奇想 直接熬了个通宵挑选 小旷3节早八高数 问题不大 感觉我是个大帅b</p>
        <p class="content-text">2025.11.5.18:21 感觉有点迷茫 不知道该学啥 学的语法都是半吊子 没有很深入的了解 竞赛也不好找队友 不知道 不知道 不知道 不知道 不知道 活着就好 其他的随缘吧! 我的耳机仓 我日!!!!!! 听了一下2018年的歌单 一种茫然的感觉 好像我一直都在回忆过去 当然可能并非我一个人这样 不过好像严重一些吧 问题不大 基本上所有旧物都会留着 今天是 回忆时刻!</p>
       <p class="content-text">2025.11.4.19.53 今天身体不舒服 暂时不想更新 预计添加一个留言板 这应该说是质的飞跃 估计得有几天 分享一些见闻吧 人这一生最重要的就是不留下遗憾 一切努力其实放在更大的局面来开 都是无关紧要的 自己只需要为自己人生负责 任何人都不会因为你的消失或出现发生太大的变化 除了在乎你的人 和你在乎的人 但生活总得继续 天天开心 宝贝~</p>
       <p class="content-text">2025.11.3.22:31 最近心口老是很痛 不知道还可以活多久 希望可以天天开心呢 等我死了 这就是我的赛博遗产 我要把我的资源全发这上面 狠狠的旷课 人生就是旷野! 爱! 想起来了 我以前的爱是爱!!</p>
@@ -137,11 +138,13 @@ const articles = {
       <h2 class="article-title">关于我</h2>
       <!-- 关于我内容 -->
       <p class="content-text">姓名:YueYe</p>
-      <p class="content-text">性别:?</p>
+      <p class="content-text">性别:未公开</p>
       <p class="content-text">年龄:19</p>
+      <p class="content-text">MBTI:infp-A</p>
+      <p class="content-text">星座:一只双鱼啊!</p>
       <p class="content-text">QQ:3448176878</p>
       <p class="content-text">邮箱:3448176878@qq.com</p>
-      <p class="content-text">游戏:cs2 Pubg 农 galgame 舟舟 </p>
+      <p class="content-text">游戏:cs2 Pubg 农 galgame 舟舟 bangdream phigros 火</p>
     </div>
   `,
   log: `
