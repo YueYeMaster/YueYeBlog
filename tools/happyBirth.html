@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生日祝福</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background-color: #4e0c35;
+            transition: background-color 1s ease;
+            overflow: hidden;
+        }
+        
+        .input-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            transition: opacity 1s ease, transform 1s ease;
+            z-index: 100; /* 确保在最上层 */
+        }
+        
+        .input-container.hide {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+            pointer-events: none;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #e91e63;
+            font-size: 28px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #e91e63;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            resize: vertical;
+            min-height: 150px;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #e91e63;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        
+        button:hover {
+            background-color: #c2185b;
+            transform: translateY(-2px);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        /* Canvas样式 */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background-color: rgba(255, 158, 175, 0.1);
+        }
+        
+        /* 确保输入表单和信件显示在canvas之上 */
+        .letter-container {
+            position: absolute;
+            z-index: 10;
+        }
+        
+        /* 信件显示 */
+        .letter-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 1s ease;
+            pointer-events: none;
+            word-wrap: break-word; /* 确保长单词也能换行 */
+            z-index: 100; /* 设置为最高层级，确保不被弹窗遮挡 */
+        }
+        
+        /* 信件内容中的span元素样式 */
+        .letter-content span {
+            display: inline-block;
+            min-width: 0.5em;
+        }
+        
+        /* 随机弹窗样式 */
+        .random-popup {
+            position: fixed;
+            background-color: #ff9eaf;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 18px;
+            font-weight: bold;
+            opacity: 0;
+            animation: popupFadeIn 0.3s ease forwards;
+            z-index: 50; /* 在粒子背景之上，主信件之下 */
+            pointer-events: none;
+        }
+        
+        @keyframes popupFadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .letter-container.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .letter-title {
+            text-align: center;
+            color: #e91e63;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        
+        .letter-content {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #333;
+            white-space: pre-wrap;
+        }
+        
+        .letter-content span {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .letter-content span.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="input-container" id="inputContainer">
+        <h1>准备生日祝福</h1>
+        <div class="form-group">
+            <label for="name">对方姓名：</label>
+            <input type="text" id="name" placeholder="请输入对方的姓名" required>
+        </div>
+        <div class="form-group">
+            <label for="letter">写下你的祝福：</label>
+            <textarea id="letter" placeholder="请输入你想对他/她说的话..." required></textarea>
+        </div>
+        <button id="submitBtn">送出祝福</button>
+    </div>
+    
+    <div class="letter-container" id="letterContainer">
+        <h2 class="letter-title" id="letterTitle">给 <span id="recipientName"></span> 的生日祝福</h2>
+        <div class="letter-content" id="letterContent"></div>
+    </div>
+    
+    <!-- 添加canvas元素用于粒子效果 -->
+    <canvas id="canvas"></canvas>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputContainer = document.getElementById('inputContainer');
+            const letterContainer = document.getElementById('letterContainer');
+            const nameInput = document.getElementById('name');
+            const letterInput = document.getElementById('letter');
+            const submitBtn = document.getElementById('submitBtn');
+            const recipientName = document.getElementById('recipientName');
+            const letterContent = document.getElementById('letterContent');
+            
+            submitBtn.addEventListener('click', () => {
+                const name = nameInput.value.trim();
+                const letter = letterInput.value.trim();
+                
+                if (!name || !letter) {
+                    alert('请填写完整信息');
+                    return;
+                }
+                
+                // 限制信件内容为200字
+                if (letter.length > 1000) {
+                    alert('信件内容不能超过1000字');
+                    return;
+                }
+                
+                // 保存数据
+                recipientName.textContent = name;
+                
+                // 隐藏输入表单
+                inputContainer.classList.add('hide');
+                
+                // 改变背景颜色为粉色
+                setTimeout(() => {
+                    document.body.style.backgroundColor = '#ff9eaf';
+                    
+                    // 开始粒子倒计时
+                    startCountdown(letter);
+                }, 1000);
+            });
+        });
+        
+        // 获取Canvas元素
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // 鼠标位置跟踪
+        const mouse = {
+            x: null,
+            y: null,
+            radius: 100 // 鼠标影响范围
+        };
+        
+        // 文字雨滴数组
+        const loveRaindrops = [];
+        const maxRaindrops = 20000; // 最大雨滴数量
+        const raindropSpeed = 0.8; // 雨滴下落速度
+        
+        // 当前信件内容
+        let currentLetter = '';
+        
+        // 设置Canvas尺寸
+        function setCanvasSize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        setCanvasSize();
+        window.addEventListener('resize', setCanvasSize);
+        
+        // 粒子配置
+        const config = {
+            particleCount: 2500, // 增加粒子数量以使倒计时效果更明显
+            particleSize: 3, // 粒子大小增加50%
+            particles: [],
+            stage: '3', // 3, 2, 1, happybirthday
+            countdown: 3,
+            animationSpeed: 0.02,
+            targetPositions: [],
+            currentPositions: [],
+            colors: ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F8B195', '#F67280', '#C06C84']
+        };
+        
+        // 创建粒子类
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = config.particleSize;
+                this.color = config.colors[Math.floor(Math.random() * config.colors.length)];
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.targetX = x;
+                this.targetY = y;
+                this.speed = 0.01 + Math.random() * 0.02;
+            }
+            
+            update() {
+                // 粒子向目标位置移动
+                this.x += (this.targetX - this.x) * this.speed;
+                this.y += (this.targetY - this.y) * this.speed;
+                
+                // 添加一些随机移动，使粒子看起来更自然
+                if (Math.random() < 0.05) {
+                    this.vx += (Math.random() - 0.5) * 0.1;
+                    this.vy += (Math.random() - 0.5) * 0.1;
+                }
+                
+                // 鼠标躲避效果
+                if (mouse.x !== null && mouse.y !== null) {
+                    const dx = this.x - mouse.x;
+                    const dy = this.y - mouse.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < mouse.radius) {
+                        // 计算避开鼠标的方向
+                        const force = (mouse.radius - distance) / mouse.radius;
+                        const angle = Math.atan2(dy, dx);
+                        
+                        this.vx += Math.cos(angle) * force * 0.5;
+                        this.vy += Math.sin(angle) * force * 0.5;
+                    }
+                }
+                
+                // 限制速度
+                this.vx = Math.max(-0.5, Math.min(0.5, this.vx));
+                this.vy = Math.max(-0.5, Math.min(0.5, this.vy));
+                
+                this.x += this.vx;
+                this.y += this.vy;
+            }
+            
+            draw() {
+                // 为颜色添加透明度，使颜色变淡
+                ctx.fillStyle = this.color + '80'; // 添加80作为透明度值（约50%透明度）
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        // 初始化粒子
+        function initParticles() {
+            config.particles = [];
+            for (let i = 0; i < config.particleCount; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                config.particles.push(new Particle(x, y));
+            }
+        }
+        
+        // 在Canvas上绘制文本并获取粒子位置
+        function getTextPositions(text, fontSize = 400) {
+            const tempCanvas = document.createElement('canvas');
+            const tempCtx = tempCanvas.getContext('2d');
+            tempCanvas.width = canvas.width;
+            tempCanvas.height = canvas.height;
+            
+            // 设置字体样式
+            tempCtx.fillStyle = '#ffffff';
+            tempCtx.font = `bold ${fontSize}px Arial`;
+            tempCtx.textAlign = 'center';
+            tempCtx.textBaseline = 'middle';
+            
+            // 绘制文本
+            tempCtx.fillText(text, canvas.width / 2, canvas.height / 2);
+            
+            // 获取像素数据
+            const imageData = tempCtx.getImageData(0, 0, canvas.width, canvas.height);
+            const positions = [];
+            
+            // 每隔一定像素采样一次，确保粒子分布合理
+            const step = Math.floor(Math.sqrt((canvas.width * canvas.height) / config.particleCount) * 1.5);
+            
+            for (let y = 0; y < canvas.height; y += step) {
+                for (let x = 0; x < canvas.width; x += step) {
+                    const index = (y * canvas.width + x) * 4;
+                    // 检查像素是否有颜色（alpha通道不为0）
+                    if (imageData.data[index + 3] > 128) {
+                        positions.push({x, y});
+                    }
+                }
+            }
+            
+            return positions;
+        }
+        
+        // 设置粒子目标位置
+        function setParticleTargets(positions) {
+            if (positions.length === 0) return;
+            
+            // 随机打乱位置数组，使粒子分布更均匀
+            const shuffled = [...positions].sort(() => Math.random() - 0.5);
+            
+            for (let i = 0; i < config.particles.length; i++) {
+                const target = shuffled[i % shuffled.length];
+                config.particles[i].targetX = target.x;
+                config.particles[i].targetY = target.y;
+            }
+        }
+        
+        // 切换到下一个阶段
+        function nextStage() {
+            if (config.stage === '3') {
+                config.stage = '2';
+                config.countdown = 2;
+                const positions = getTextPositions('2');
+                setParticleTargets(positions);
+            } else if (config.stage === '2') {
+                config.stage = '1';
+                config.countdown = 1;
+                const positions = getTextPositions('1');
+                setParticleTargets(positions);
+            } else if (config.stage === '1') {
+                config.stage = 'happybirthday';
+                // 绘制Happy Birthday文字
+                drawHappyBirthday();
+            }
+        }
+        
+        // 绘制Happy Birthday字符
+        function drawHappyBirthday() {
+            // 临时增加粒子数量
+            const originalParticleCount = config.particleCount;
+            config.particleCount = 4000; // 增加粒子数量
+            
+            // 创建临时Canvas来绘制Happy Birthday字符
+            const tempCanvas = document.createElement('canvas');
+            const tempCtx = tempCanvas.getContext('2d');
+            tempCanvas.width = canvas.width;
+            tempCanvas.height = canvas.height;
+            
+            // 设置字体样式 - 增大字体大小
+            tempCtx.fillStyle = '#ffffff';
+            tempCtx.font = `bold 300px Arial`;
+            tempCtx.textAlign = 'center';
+            tempCtx.textBaseline = 'middle';
+            
+            // 绘制Happy Birthday文字
+            tempCtx.fillText('Happy Birthday', canvas.width / 2, canvas.height / 2);
+            
+            // 获取像素数据
+            const imageData = tempCtx.getImageData(0, 0, canvas.width, canvas.height);
+            const positions = [];
+            
+            // 减小采样步长以增加粒子密度
+            const step = Math.floor(Math.sqrt((canvas.width * canvas.height) / config.particleCount) * 0.8);
+            
+            for (let y = 0; y < canvas.height; y += step) {
+                for (let x = 0; x < canvas.width; x += step) {
+                    const index = (y * canvas.width + x) * 4;
+                    if (imageData.data[index + 3] > 128) {
+                        positions.push({x, y});
+                    }
+                }
+            }
+            
+            // 重新初始化粒子以应用新的数量
+            initParticles();
+            
+            setParticleTargets(positions);
+            
+            // 延迟显示信件内容
+            setTimeout(() => {
+                showLetter(currentLetter);
+                // 恢复原始粒子数量（可选）
+                // config.particleCount = originalParticleCount;
+            }, 2000);
+        }
+        
+        // 文字雨滴类
+        class LoveRaindrop {
+            constructor() {
+                // 随机在屏幕上方顶部到1/4处生成雨滴
+                this.x = Math.random() * canvas.width;
+                this.y = -100 - Math.random() * (canvas.height / 4);
+                this.speed = raindropSpeed + Math.random() * 0.5; // 随机速度
+                this.chars = ['H', 'A', 'P', 'P', 'Y'];
+                this.charSize = 7 + Math.random() * 5;
+                this.fadeRate = 0.02;
+                this.startFadePosition = canvas.height * 0.5;
+                
+                // 为每个字符单独设置透明度，初始都为1
+                this.charOpacities = [1, 1, 1, 1, 1];
+                // 为每个字符随机设置开始消失的延迟
+                this.fadeDelays = [
+                    Math.random() * 30,
+                    Math.random() * 30 + 20,
+                    Math.random() * 30 + 40,
+                    Math.random() * 30 + 60,
+                    Math.random() * 30 + 80
+                ];
+                // 每个字符的消失计数器
+                this.fadeCounters = [0, 0, 0, 0, 0];
+            }
+            
+            update() {
+                // 雨滴下落
+                this.y += this.speed;
+                
+                // 当雨滴到达消失位置时，开始计算每个字符的消失计数器
+                if (this.y > this.startFadePosition) {
+                    for (let i = 0; i < this.chars.length; i++) {
+                        if (this.charOpacities[i] > 0) {
+                            this.fadeCounters[i]++;
+                            // 当计数器达到延迟值时，开始减少透明度
+                            if (this.fadeCounters[i] > this.fadeDelays[i]) {
+                                this.charOpacities[i] -= this.fadeRate;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'top';
+                
+                // 绘制竖向排列的字符，添加粉色渐变效果
+                for (let i = 0; i < this.chars.length; i++) {
+                    if (this.charOpacities[i] <= 0) continue;
+                    
+                    ctx.globalAlpha = this.charOpacities[i];
+                    // 创建粉色渐变
+                    const gradient = ctx.createLinearGradient(this.x - this.charSize/2, this.y + i * this.charSize, this.x + this.charSize/2, this.y + i * this.charSize + this.charSize);
+                    gradient.addColorStop(0, '#ff9eaf');
+                    gradient.addColorStop(1, '#ff6b9b');
+                    
+                    ctx.fillStyle = gradient;
+                    ctx.font = `bold ${this.charSize}px Arial`;
+                    ctx.fillText(this.chars[i], this.x, this.y + i * this.charSize);
+                }
+                
+                ctx.restore();
+            }
+            
+            // 检查雨滴是否完全消失或超出屏幕
+            isDead() {
+                const allCharsDead = this.charOpacities.every(opacity => opacity <= 0);
+                return allCharsDead || this.y > canvas.height + 100;
+            }
+        }
+        
+        // 创建新的文字雨滴
+        function createLoveRaindrop() {
+            if (loveRaindrops.length < maxRaindrops && Math.random() < 0.8) {
+                loveRaindrops.push(new LoveRaindrop());
+            }
+        }
+        
+        // 更新和绘制所有文字雨滴
+        function updateAndDrawRaindrops() {
+            createLoveRaindrop();
+            
+            // 更新和绘制雨滴，同时过滤掉已经消失的雨滴
+            for (let i = loveRaindrops.length - 1; i >= 0; i--) {
+                loveRaindrops[i].update();
+                loveRaindrops[i].draw();
+                
+                if (loveRaindrops[i].isDead()) {
+                    loveRaindrops.splice(i, 1);
+                }
+            }
+        }
+        
+        // 动画循环
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 更新和绘制所有粒子
+            config.particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            // 更新和绘制文字雨滴
+            updateAndDrawRaindrops();
+            
+            requestAnimationFrame(animate);
+        }
+        
+        // 开始倒计时
+        function startCountdown(letter) {
+            currentLetter = letter;
+            
+            initParticles();
+            
+            // 设置初始阶段为3
+            const positions = getTextPositions('3');
+            setParticleTargets(positions);
+            
+            // 启动动画循环
+            animate();
+            
+            // 设置倒计时切换
+            setTimeout(nextStage, 2000); // 2秒后切换到2
+            setTimeout(nextStage, 4000); // 4秒后切换到1
+            setTimeout(nextStage, 6000); // 6秒后切换到Happy Birthday
+        }
+        
+        // 显示信件内容
+        function showLetter(letter) {
+            const letterContainer = document.getElementById('letterContainer');
+            const letterContent = document.getElementById('letterContent');
+            const recipientName = document.getElementById('recipientName').textContent;
+            
+            // 清空内容
+            letterContent.innerHTML = '';
+            
+            // 创建一个段落元素用于显示内容
+            const paragraph = document.createElement('p');
+            paragraph.style.whiteSpace = 'normal'; // 自动换行
+            paragraph.style.wordBreak = 'break-word'; // 单词拆分
+            paragraph.style.lineHeight = '1.6'; // 行高
+            paragraph.style.fontSize = '18px'; // 字体大小
+            
+            // 每个字符用span包裹
+            for (let i = 0; i < letter.length; i++) {
+                const charSpan = document.createElement('span');
+                charSpan.textContent = letter[i];
+                charSpan.style.opacity = '0'; // 初始隐藏
+                paragraph.appendChild(charSpan);
+            }
+            
+            letterContent.appendChild(paragraph);
+            
+            // 显示容器
+            letterContainer.classList.add('show');
+            
+            // 启动随机弹窗效果
+            createRandomPopups(recipientName);
+            
+            // 逐字显示
+            const allChars = letterContent.querySelectorAll('span');
+            let charIndex = 0;
+            
+            const typeInterval = setInterval(() => {
+                if (charIndex < allChars.length) {
+                    // 设置为可见
+                    allChars[charIndex].style.opacity = '1';
+                    allChars[charIndex].style.transition = 'opacity 0.3s ease';
+                    charIndex++;
+                } else {
+                    clearInterval(typeInterval);
+                }
+            }, 50);
+        }
+        
+        // 创建随机弹窗
+        function createRandomPopups(name) {
+            const popupCount = 300; // 随机弹窗数量
+            const delayBetweenPopups = 60; // 弹窗间隔时间(毫秒)
+            
+            // 生成随机弹窗
+            for (let i = 0; i < popupCount; i++) {
+                setTimeout(() => {
+                    const popup = document.createElement('div');
+                    popup.className = 'random-popup';
+                    popup.textContent = name + '生日快乐!';
+                    
+                    // 随机位置
+                    const maxX = window.innerWidth - 200; // 减去弹窗宽度
+                    const maxY = window.innerHeight - 100; // 减去弹窗高度
+                    popup.style.left = Math.random() * maxX + 'px';
+                    popup.style.top = Math.random() * maxY + 'px';
+                    
+                    // 随机粉色背景色
+                    const pinkShade = Math.floor(Math.random() * 30) + 220; // 220-250范围的粉色
+                    popup.style.backgroundColor = `rgb(255, ${pinkShade}, ${pinkShade})`;
+                    
+                    // 随机缩放和旋转
+                    const scale = 0.8 + Math.random() * 0.4; // 0.8-1.2范围
+                    const rotation = (Math.random() * 10) - 5; // -5到5度范围
+                    popup.style.transform = `scale(${scale}) rotate(${rotation}deg)`;
+                    
+                    // 添加到页面
+                    document.body.appendChild(popup);
+                    
+                    // 弹窗永不消失
+                    // 由于要求弹窗不消失，所以不需要设置移除逻辑
+                }, i * delayBetweenPopups);
+            }
+        }
+        
+        // 鼠标移动事件
+        canvas.addEventListener('mousemove', function(event) {
+            // 获取鼠标在Canvas中的位置
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = event.clientX - rect.left;
+            mouse.y = event.clientY - rect.top;
+        });
+        
+        // 鼠标离开Canvas事件
+        canvas.addEventListener('mouseout', function() {
+            mouse.x = null;
+            mouse.y = null;
+        });
+    </script>
+</body>
+</html>

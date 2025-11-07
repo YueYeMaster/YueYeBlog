@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToolsLove</title>
+    <style>
+        html{
+            height: 100%;
+        }
+        body{
+            background-image: url(./Toolsimgs/蝶祈主页.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        .top{
+        position: relative;
+        height: 10%;
+        width: 100%;
+          background: rgba(255, 255, 255, 0.2);
+             backdrop-filter: blur(10px);
+             -webkit-backdrop-filter: blur(10px);
+        text-align: center;
+        line-height: 100px;
+        font-size: 30px;
+        font-weight: bold;
+        }
+        .main{
+            position: relative;
+            height: 90%;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            gap: 120px;
+            align-items: center;
+            justify-content: center;
+        }
+        .main_tools{
+            position: relative;
+            height: 50%;
+            flex: 1;
+            max-width: 200px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .main_tools{
+            position: relative;
+            height: 80%;
+            flex: 1;
+            max-width: 200px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            perspective: 1000px;
+        }
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 1s ease-in-out;
+            transform-style: preserve-3d;
+            border-radius: 20px;
+        }
+        .main_tools:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+        .card-back {
+            background-color: rgba(0, 0, 0, 0.5);
+            transform: rotateY(180deg);
+        }
+        .card-text {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .main_tools img{
+            height: 100%;
+            width: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="top">
+        <div id="dynamic-text">
+        </div>
+    </div>
+    <div class="main">
+        <div class="main_tools">
+            <div class="card-inner" onclick="window.location.href='happyBirth.html'" style="cursor: pointer;">
+                <div class="card-front">
+                    <img src="./Toolsimgs/蝶祈1.jpg" alt="蝶祈1">
+                </div>
+                <div class="card-back">
+                    <div class="card-text">生日祝福</div>
+                </div>
+            </div>
+        </div>
+        <div class="main_tools">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="./Toolsimgs/蝶祈2.jpg" alt="蝶祈2">
+                </div>
+                <div class="card-back">
+                    <div class="card-text">节日祝福</div>
+                </div>
+            </div>
+        </div>
+        <div class="main_tools">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="./Toolsimgs/蝶祈3.jpg" alt="蝶祈3">
+                </div>
+                <div class="card-back">
+                    <div class="card-text">表白大人</div>
+                </div>
+            </div>
+        </div>
+        <div class="main_tools">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="./Toolsimgs/蝶祈4.jpg" alt="蝶祈4">
+                </div>
+                <div class="card-back">
+                    <div class="card-text">想某人</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        const texts = [
+            "而我已经分不清 你是友情 还是错过的爱情",
+            "极光掠过天边 北风掠过想你的容颜",
+            "印象中的爱情 好像抵不住那时间"
+        ];
+
+        const textElement = document.getElementById('dynamic-text');
+        let currentTextIndex = 0;
+        let currentCharIndex = 0;
+        let isDeleting = false;
+        let isPausing = false;
+
+        function animateText() {
+            const currentText = texts[currentTextIndex];
+            if (isDeleting) {
+                textElement.textContent = currentText.slice(0, currentCharIndex);
+                currentCharIndex--;
+                if (currentCharIndex < 0) {
+                    isDeleting = false;
+                    isPausing = true;
+                    currentTextIndex = (currentTextIndex + 1) % texts.length;
+                    setTimeout(() => {
+                        isPausing = false;
+                        currentCharIndex = 0;
+                    }, 800);
+                }
+            } else if (!isPausing) {
+                textElement.textContent = currentText.slice(0, currentCharIndex + 1);
+                currentCharIndex++;
+                if (currentCharIndex > currentText.length) {
+                    isDeleting = true;
+                    setTimeout(() => {
+                        animateText();
+                    }, 1000);
+                    return;
+                }
+            }
+            setTimeout(animateText, isDeleting ? 80 : 150);
+        }
+        
+        // 页面加载后开始动画
+        document.addEventListener('DOMContentLoaded', animateText);
+    </script>
+</body>
+</html>

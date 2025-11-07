@@ -104,7 +104,7 @@ const articles = {
         <img src="./imgs2/艾拉.jpg" alt="艾拉" id="img7">
         <div class="photo-text">人格测试</div>
       </div>
-      <div class="home-background-link">
+      <div class="home-background-link" onclick="window.location.href='./tools/loveindex.html'" style="cursor: pointer;">
         <img src="./imgs2/蝶祈.jpg" alt="蝶祈" id="img8">
         <div class="photo-text">表白工具</div>
       </div>
@@ -142,9 +142,11 @@ const articles = {
     <div class="article">
       <h2 class="article-title">赛博日记</h2>
       <!-- diary内容 -->
-       <p class="content-text">2025.11.7.00:02 也许我就是适合一个人 之前的所有都是一份礼物 准备暂停更新blog 搞搞luogu题目玩玩 有时候活着挺没意思的 有时候有特别 怎么说 就是很奇怪吧 infp-a 无敌了孩子 能开心一天是一天吧 万一明天就死翘翘了呢 最近气胸的症状又犯了 感觉浑身难受 185/60 体脂率15% 总感觉得了癌症一样 我得把我终生收集的好片放在上面 这样也算一种活着 哈哈哈 一个为了精神享受 可以每天不吃不喝的男人 旷课多了 好像也没什么大不了 关键是真的很水啊 不喜欢拘束的感觉</p>
+      <p class="content-text">2025.11.8 00:28 手牵手一步两步三步四步望着天 看星星一颗两颗三颗四颗连成线 哈哈哈 听什么歌就以什么心情写日记 准备写两个小游戏 最难搞的数据库接口也快实现了 期待期待 爽!!!! 我不配 我听了6000次!!! 288*6000=1728000000ms=20天!!!!!!! 一些些应该体贴的感觉我没给 你嘟嘴许的愿望很卑微在妥协 好吧 每次听 应该是每个阶段听感觉都不一样</p>
+      <p class="content-text">2025.11.7 19:51 为什么每天都感觉很累 就离谱 明明什么都没干 难绷 准备写几个小游戏进来 顺便练练手 没什么想说的 别翻旧相册 过来人的忠告 想回归百番计划 现在时间明明很充足来着 不说了 Rust 启动 !!!!!!!!!!</p>
+      <p class="content-text">2025.11.7.00:02 也许我就是适合一个人 之前的所有都是一份礼物 准备暂停更新blog 搞搞luogu题目玩玩 有时候活着挺没意思的 有时候有特别 怎么说 就是很奇怪吧 infp-a 无敌了孩子 能开心一天是一天吧 万一明天就死翘翘了呢 最近气胸的症状又犯了 感觉浑身难受 185/60 体脂率15% 总感觉得了癌症一样 我得把我终生收集的好片放在上面 这样也算一种活着 哈哈哈 一个为了精神享受 可以每天不吃不喝的男人 旷课多了 好像也没什么大不了 关键是真的很水啊 不喜欢拘束的感觉</p>
       <p class="content-text">2025.11.6.14:02 爽飞 恩格尔系数拉的最高的一个月 想要成为phigros高手 入了小板子和一个iqoowatchgt 深夜突发奇想 直接熬了个通宵挑选 小旷3节早八高数 问题不大 感觉我是个大帅b</p>
-       <p class="content-text">2025.11.5.18:21 感觉有点迷茫 不知道该学啥 学的语法都是半吊子 没有很深入的了解 竞赛也不好找队友 不知道 不知道 不知道 不知道 不知道 活着就好 其他的随缘吧! 我的耳机仓 我日!!!!!! 听了一下2018年的歌单 一种茫然的感觉 好像我一直都在回忆过去 当然可能并非我一个人这样 不过好像严重一些吧 问题不大 基本上所有旧物都会留着 今天是 回忆时刻!</p>
+      <p class="content-text">2025.11.5.18:21 感觉有点迷茫 不知道该学啥 学的语法都是半吊子 没有很深入的了解 竞赛也不好找队友 不知道 不知道 不知道 不知道 不知道 活着就好 其他的随缘吧! 我的耳机仓 我日!!!!!! 听了一下2018年的歌单 一种茫然的感觉 好像我一直都在回忆过去 当然可能并非我一个人这样 不过好像严重一些吧 问题不大 基本上所有旧物都会留着 今天是 回忆时刻!</p>
       <p class="content-text">2025.11.4.19.53 今天身体不舒服 暂时不想更新 预计添加一个留言板 这应该说是质的飞跃 估计得有几天 分享一些见闻吧 人这一生最重要的就是不留下遗憾 一切努力其实放在更大的局面来开 都是无关紧要的 自己只需要为自己人生负责 任何人都不会因为你的消失或出现发生太大的变化 除了在乎你的人 和你在乎的人 但生活总得继续 天天开心 宝贝~</p>
       <p class="content-text">2025.11.3.22:31 最近心口老是很痛 不知道还可以活多久 希望可以天天开心呢 等我死了 这就是我的赛博遗产 我要把我的资源全发这上面 狠狠的旷课 人生就是旷野! 爱! 想起来了 我以前的爱是爱!!</p>
       <p class="content-text">2025.11.2.23:04 有想法了 但是得先睡觉 这很重要 希望我可以天天开心 不再emo 成为一个真正的man! 早睡 晚安 !!!!!!!!</p>
@@ -169,19 +171,20 @@ const articles = {
       <h2 class="article-title">关于我</h2>
       <!-- 关于我内容 -->
       <p class="content-text">姓名:YueYe</p>
-      <p class="content-text">性别:未公开</p>
+      <p class="content-text">性别:未公开档案</p>
       <p class="content-text">年龄:19</p>
       <p class="content-text">MBTI:infp-A</p>
       <p class="content-text">星座:一只双鱼啊!</p>
       <p class="content-text">QQ:3448176878</p>
       <p class="content-text">邮箱:3448176878@qq.com</p>
-      <p class="content-text">游戏:cs2 Pubg 农 galgame 舟舟 bangdream phigros 火</p>
+      <p class="content-text">游戏:Rust Cs2 Pubg 农 galgame 舟舟 bangdream phigros 火</p>
     </div>
   `,
   log: `
     <div class="article">
       <h2 class="article-title">日志</h2>
       <!-- 日志内容 -->
+      <p class="content-text">11.7 0.08版本 添加loveindex页面 生日祝福 小子</p>
        <p class="content-text">11.7 0.07版本 全局磨砂 交互效果优化</p>
        <p class="content-text">11.5 0.06版本 home页面迎来大变 优化了悬停效果 YueYeMaster!</p>
       <p class="content-text">11.3 0.05vertion 添加了setting按钮 可以切换雨天 晴天 以及透明主题 隐藏主题 优化了悬停效果 添加了成立时间表</p>
