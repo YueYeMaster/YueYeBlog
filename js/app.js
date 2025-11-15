@@ -100,7 +100,7 @@ const articles = {
         <img src="./imgs2/亚丝娜.jpg" alt="亚丝娜" id="img6">
         <div class="photo-text">生活碎片</div>
       </div>
-      <div class="home-background-link">
+    <div class="home-background-link" onclick="window.open('https://www.16personalities.com/ch/%E4%BA%BA%E6%A0%BC%E6%B5%8B%E8%AF%95', '_blank')" style="cursor: pointer;">
         <img src="./imgs2/艾拉.jpg" alt="艾拉" id="img7">
         <div class="photo-text">人格测试</div>
       </div>
@@ -142,6 +142,8 @@ const articles = {
     <div class="article">
       <h2 class="article-title">赛博日记</h2>
       <!-- diary内容 -->
+       <p class="content-text">2025.11.16 01:06 平淡的美好生活 pal好玩!!! 突然发现自己是game大师 暧昧情话简直是印刻在基因里面的 离谱 但又坚持寻求幻想中的爱恋 就离谱 问题不大 还是得刻苦求学(一周没写代码这件事)hhh 我永远爱纯境!!! 学校门口的纯境已经被我买完了 wc</p> 
+      <p class="content-text">2025.11.13 00:38 pal是世界上最好玩的游戏!!! 无事发生 平平淡淡的一天 今日smoking six 现在听半句再见已经无感了 我又变强了 hhhh</p>
       <p class="content-text">2025.11.12 01:17 想要遗忘 怎么反复挂牵? 用眼泪把你复习一遍 </p>
       <p class="content-text">2025.11.11 10:24 半句再见 他人说的是 再见迟迟开不了口 遗憾的人迟迟放不下 但我的理解是 再见就是得两个人做最后的道别 但有时候 再见不能开口 只能深埋心中 再见是得有两个人的事情 一个人的再见是不完整的 所以是半句再见 而在你心里 要怎么道别 为何不放 即是过往云烟 想要遗忘 怎么反复挂牵 说这半句再见 已过了多少年 无解</p> 
       <p class="content-text">2025.11.9 00:17 无事发生 pal 好玩!!! 好吧只要不工作 其实每天娱乐 我简直爽飞了 我决定好好享受难得的单身时光 不可以放弃对纯爱的憧憬 问题不大 ipad简直是神 确实遥遥领先了 这个没话说 每天坚持吃土 活着!!!! 精神享受明显比物质重要 果然 我还是太佛系了 infp小蝴蝶是这样的 简直是神人 问题不大 深夜刷两道luogu玩玩 代码也是越来越熟练了</p>
@@ -176,7 +178,7 @@ const articles = {
       <p class="content-text">姓名:YueYe</p>
       <p class="content-text">性别:未公开档案</p>
       <p class="content-text">年龄:19</p>
-      <p class="content-text">MBTI:infp-A</p>
+      <p class="content-text">MBTI:INFP-A</p>
       <p class="content-text">星座:一只双鱼啊!</p>
       <p class="content-text">QQ:3448176878</p>
       <p class="content-text">邮箱:3448176878@qq.com</p>
