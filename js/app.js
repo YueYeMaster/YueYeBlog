@@ -71,9 +71,9 @@ const articles = {
         <img src="./imgs2/伊雷娜.jpg" alt="伊雷娜" id="img2">
         <div class="photo-text">我追的番</div>
       </div>
-      <div class="home-background-link">
+      <div class="home-background-link" onclick="window.open('./tools/ShareSong/ShareSong.html', '_blank')" style="cursor: pointer;">
         <img src="./imgs2/薇尔莉特.jpg" alt="薇尔莉特" id="img3">
-        <div class="photo-text">我听的歌</div>
+        <div class="photo-text">好歌分享</div>
       </div>
       <div class="home-background-link">
         <img src="./imgs2/樱岛麻衣.jpg" alt="樱岛麻衣" id="img4">
@@ -92,11 +92,11 @@ const articles = {
       <span>な</span>
       </div>
              <div class="article-home">
-      <div class="home-background-link">
+      <div class="home-background-link" onclick="window.open('./tools/Gamese/SnakeGame.html', '_blank')" style="cursor: pointer;">
         <img src="./imgs2/三叶.jpg" alt="三叶" id="img5">
-        <div class="photo-text">动漫壁纸</div>
+        <div class="photo-text">贪吃蛇</div>
       </div>
-      <div class="home-background-link">
+      <div class="home-background-link" onclick="window.open('./tools/MyLife/Mylifeindex.html', '_blank')" style="cursor: pointer;">
         <img src="./imgs2/亚丝娜.jpg" alt="亚丝娜" id="img6">
         <div class="photo-text">生活碎片</div>
       </div>
@@ -104,7 +104,7 @@ const articles = {
         <img src="./imgs2/艾拉.jpg" alt="艾拉" id="img7">
         <div class="photo-text">人格测试</div>
       </div>
-      <div class="home-background-link" onclick="window.location.href='./tools/loveindex.html'" style="cursor: pointer;">
+      <div class="home-background-link" onclick="window.open('./tools/loveindex.html', '_blank')" style="cursor: pointer;">
         <img src="./imgs2/蝶祈.jpg" alt="蝶祈" id="img8">
         <div class="photo-text">表白工具</div>
       </div>
@@ -142,6 +142,7 @@ const articles = {
     <div class="article">
       <h2 class="article-title">赛博日记</h2>
       <!-- diary内容 -->
+      <p class="content-text">2025.11.20 11:09 愿你能保持月亮般的心 要爱自己啊~</p>
       <p class="content-text">2025.11.18 19:27 越想遗忘越是反复挂牵 想要遗忘 怎么反复挂牵 用眼泪把你复习一遍 说这半句再见 已过了多少年 无解 冷死我了 wc vibe小子赛高 今天把歌曲分享做了 nice bro 下个月就元旦了 好快 感觉很对事情都没做 算了 开心一天是一天 这个sbAI提示 我真绷不住了 快乐显得卑微 怎么不放 ......... 好糖的日记</p>
       <p class="content-text">2025.11.17 00:40 不知道更新什么了 往日 你说往日? 写个留言板吧 先 无事发生~</p>
        <p class="content-text">2025.11.16 01:06 平淡的美好生活 pal好玩!!! 突然发现自己是game大师 暧昧情话简直是印刻在基因里面的 离谱 但又坚持寻求幻想中的爱恋 就离谱 问题不大 还是得刻苦求学(一周没写代码这件事)hhh 我永远爱纯境!!! 学校门口的纯境已经被我买完了 wc</p> 
