@@ -116,6 +116,7 @@ const articles = {
     <div class="article">
       <h2 class="article-title">知识分享</h2>
       <!-- 知识分享内容 -->
+      <p class="content-text">luogu1010 使用两层do while循环 外层归零 记录 内层使用temp =* 2 while中比较number大小 实现控制 每次循环记录一个最大次方 后续number - temp 继续循环 得到所有二的次方</p> 
       <p class="content-text">switch 穿透问题的应用 在多个case中 若一个case为true后 不写入break 程序会默认后面的代码 均为true 可以利用这个特性 实现一些代码的简写</p>
       <p class="content-text">在路径试题中在标准格子中 最短路径等于 总步数的阶乘 除于 x轴的阶乘 y轴的阶乘
 
@@ -142,6 +143,8 @@ const articles = {
     <div class="article">
       <h2 class="article-title">赛博日记</h2>
       <!-- diary内容 -->
+       <p class="content-text">2025.11.22 00:52 我他妈简直是鬼才 真的 我决定成为鬼畜睾手</p>
+      <p class="content-text">2025.11.22 00:19 感觉最近水逆完了 兄弟 这次 真的彻底击溃我了 不知道前端还有什么意义 感觉AI已经可以取代大部分低端程序员了 瞬间就业焦虑 ......... 论40块钱如何活一周 无敌了 孩子 完全没有目标 感觉整天浑浑噩噩的 好没意思的感觉</p>
       <p class="content-text">2025.11.20 11:09 愿你能保持月亮般的心 要爱自己啊~</p>
       <p class="content-text">2025.11.18 19:27 越想遗忘越是反复挂牵 想要遗忘 怎么反复挂牵 用眼泪把你复习一遍 说这半句再见 已过了多少年 无解 冷死我了 wc vibe小子赛高 今天把歌曲分享做了 nice bro 下个月就元旦了 好快 感觉很对事情都没做 算了 开心一天是一天 这个sbAI提示 我真绷不住了 快乐显得卑微 怎么不放 ......... 好糖的日记</p>
       <p class="content-text">2025.11.17 00:40 不知道更新什么了 往日 你说往日? 写个留言板吧 先 无事发生~</p>
@@ -192,6 +195,7 @@ const articles = {
     <div class="article">
       <h2 class="article-title">日志</h2>
       <!-- 日志内容 -->
+      <p class="content-text">11.19 0.09版本 补全了小游戏 歌曲分享 生活碎片页面 优化了交互效果</p>
       <p class="content-text">11.7 0.08版本 添加loveindex页面 生日祝福 小子</p>
        <p class="content-text">11.7 0.07版本 全局磨砂 交互效果优化</p>
        <p class="content-text">11.5 0.06版本 home页面迎来大变 优化了悬停效果 YueYeMaster!</p>
