@@ -75,9 +75,9 @@ const articles = {
         <img src="./imgs2/薇尔莉特.jpg" alt="薇尔莉特" id="img3">
         <div class="photo-text">好歌分享</div>
       </div>
-      <div class="home-background-link">
+      <div class="home-background-link" onclick="window.open('./Message Board/MessageBoardindex.html', '_blank')" style="cursor: pointer;">
         <img src="./imgs2/樱岛麻衣.jpg" alt="樱岛麻衣" id="img4">
-        <div class="photo-text">一些工具</div>
+        <div class="photo-text">留沿板哩</div>
       </div>
       </div>
     </div>
